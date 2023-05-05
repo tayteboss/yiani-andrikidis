@@ -5,8 +5,12 @@ import { getFeaturedProjects, getHomePage, getSiteData } from '../lib/datocms';
 import { NextSeo } from 'next-seo';
 import { SiteData } from '../shared/types/types';
 import Statements from '../components/blocks/Statements';
+import FeaturedProjects from '../components/blocks/FeaturedProjects';
 
-const PageWrapper = styled.div``;
+const PageWrapper = styled.div`
+	min-height: calc(var(--vh) * 100);
+	background: var(--colour-white);
+`;
 
 type Props = {
 	homeData: {
@@ -43,6 +47,7 @@ const Page = (props: Props) => {
 				}}
 			/>
 			<Statements data={homeData?.homePageStatements} />
+			<FeaturedProjects data={featuredProjects} />
 		</PageWrapper>
 	);
 };

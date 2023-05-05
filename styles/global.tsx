@@ -19,6 +19,7 @@ export const GlobalStyles = createGlobalStyle`
 		--transition-speed-slow: ${theme.transitionSpeed.slow};
 		--transition-speed-extra-slow: ${theme.transitionSpeed.extraSlow};
 		--transition-ease: cubic-bezier(0.65, 0, 0.35, 1);
+		--feature-wrapper-height: 30vh;
 	}
 
 	* {
@@ -43,7 +44,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	html {
 		scroll-behavior: smooth;
-		background: var(--colour-white);
+		background: var(--colour-black800);
 		font-size: 16px;
 
 		&.no-scroll {
@@ -58,6 +59,7 @@ export const GlobalStyles = createGlobalStyle`
 	body {
 		position: relative;
 		font-family: var(--font-lazzer-semibold);
+		cursor: crosshair;
 	}
 
 	input,
@@ -87,7 +89,8 @@ export const GlobalStyles = createGlobalStyle`
 		transition: all var(--transition-speed-default) var(--transition-ease);
 	}
 
-	button {
+	button,
+	a {
 		cursor: pointer;
 	}
 
@@ -99,6 +102,7 @@ export const GlobalStyles = createGlobalStyle`
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
 			font-size: ${theme.sizeTablet.h1};
+			line-height: ${pxToRem(45)};
 		}
 
 		@media ${theme.mediaBreakpoints.mobile}
@@ -115,6 +119,7 @@ export const GlobalStyles = createGlobalStyle`
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
 			font-size: ${theme.sizeTablet.h2};
+			line-height: ${pxToRem(45)};
 		}
 
 		@media ${theme.mediaBreakpoints.mobile}

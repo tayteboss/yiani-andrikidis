@@ -2,10 +2,14 @@ import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import Statement from './Statement';
 import { useState } from 'react';
-import pxToRem from '../../../utils/pxToRem';
 
 const StatementsWrapper = styled.div`
 	display: inline-block;
+	overflow: auto;
+	position: relative;
+	z-index: 1;
+	padding-bottom: calc(var(--feature-wrapper-height) + 32px);
+	background: var(--colour-white);
 `;
 
 const Span = styled.span`

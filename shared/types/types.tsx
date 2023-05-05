@@ -1,3 +1,20 @@
+export type FeaturedProjectType = {
+	role: string;
+	title: string;
+	placeholderImage: {
+		url: string;
+	};
+	snippetVideoMp4: {
+		url: string;
+	};
+	snippetVideoWebm: {
+		url: string;
+	};
+	vimeoLink: {
+		url: string;
+	}
+};
+
 export type HomeStatements = {
 	homePageStatements: [];
 };

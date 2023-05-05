@@ -35,7 +35,7 @@ const Link = styled.a`
 
 	&:hover {
 		text-decoration: underline;
-		color: var(--colour-blue);
+		color: var(--colour-black);
 	}
 `;
 
