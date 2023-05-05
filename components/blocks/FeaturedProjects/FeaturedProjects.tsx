@@ -5,6 +5,8 @@ import pxToRem from '../../../utils/pxToRem';
 import FeaturedDragButton from '../../elements/FeaturedDragButton';
 import { useEffect, useState } from 'react';
 import useViewportWidth from '../../../hooks/useViewportWidth';
+import { FeaturedProjectType } from '../../../shared/types/types';
+import MenuTrigger from '../../elements/MenuTrigger';
 
 const FeaturedProjectsWrapper = styled.div`
 	position: fixed;
@@ -63,7 +65,7 @@ const EmblaSlide = styled.div`
 `;
 
 type Props = {
-	data: []
+	data: any;
 };
 
 const FeaturedProjects = (props: Props) => {
@@ -88,9 +90,9 @@ const FeaturedProjects = (props: Props) => {
 
 	const setStatementsBrightness = () => {
 		if (isMini) {
-			return 1;
+			return '1';
 		} else {
-			return 0.3;
+			return '0.3';
 		}
 	};
 
@@ -111,7 +113,7 @@ const FeaturedProjects = (props: Props) => {
 		<FeaturedProjectsWrapper>
 			<Embla className="embla" ref={emblaRef}>
 				<EmblaContainer className="embla__container">
-					{hasData && data.map((item, i) => (
+					{hasData && data.map((item: FeaturedProjectType, i: number) => (
 						<EmblaSlide className="embla__slide" key={i}>
 							<FeaturedProject data={item} />
 						</EmblaSlide>
@@ -119,6 +121,7 @@ const FeaturedProjects = (props: Props) => {
 				</EmblaContainer>
 			</Embla>
 			<FeaturedDragButton setIsMini={setIsMini} isMini={isMini} />
+			<MenuTrigger />
 		</FeaturedProjectsWrapper>
 	);
 };

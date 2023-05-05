@@ -34,6 +34,11 @@ const MoreButton = styled.button`
 		width: 100%;
 		height: 4px;
 		background: var(--colour-blue);
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			height: 3px;
+			bottom: 2px;
+		}
 	}
 `;
 

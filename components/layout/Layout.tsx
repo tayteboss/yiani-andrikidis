@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import Header from './Header';
-import Footer from './Footer';
-import { ReactNode } from 'react';
+import { ReactNode, createContext, useState } from 'react';
+import Menu from './Menu';
+
+export const MenuContext = createContext(null);
 
 const Main = styled.main``;
 
@@ -14,12 +15,16 @@ const Layout = (props: Props) => {
 		children
 	} = props;
 
+	const [menuIsOpen, setMenuIsOpen] = useState(false);
+
 	return (
-		<>
-			{/* <Header /> */}
+		<MenuContext.Provider value={{ menuIsOpen, setMenuIsOpen }}>
 			<Main>{children}</Main>
-			{/* <Footer /> */}
-		</>
+			<Menu
+				menuIsOpen={menuIsOpen}
+				setMenuIsOpen={setMenuIsOpen}
+			/>
+		</MenuContext.Provider>
 	);
 };
 
