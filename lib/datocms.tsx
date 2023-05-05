@@ -1,15 +1,14 @@
 import { GraphQLClient } from 'graphql-request';
-import ALL_PAGES_QUERY from './queries/allPages';
-import PAGE_QUERY from './queries/page';
+import { HOME_PAGE_QUERY, INDEX_PAGE_QUERY, AWARD_PAGE_QUERY, FEATURED_PROJECTS_QUERY } from './queries/page';
 import SITE_QUERY from './queries/siteData';
 
 type Request = {
 	query: string;
-	variables: {};
-	preview: boolean;
+	variables?: {};
+	preview?: boolean;
 };
 
-const request = ({ query, variables, preview }: Request) => {
+const request = ({ query, variables, preview = false }: Request) => {
 	const endpoint = preview
 		? `https://graphql.datocms.com/preview`
 		: `https://graphql.datocms.com/`;
@@ -28,25 +27,37 @@ export const getSiteData = async () => {
 		preview: false
 	});
 
-	return data;
+	return data?.siteInformation;
 };
 
-export const getAllPages = async (siteId: number) => {
+export const getHomePage = async () => {
 	const data = await request({
-		query: ALL_PAGES_QUERY,
-		variables: { siteId },
-		preview: false
+		query: HOME_PAGE_QUERY,
 	});
 
-	return data;
+	return data?.homePage;
 };
 
-export const getPage = async (pageSlug: string, preview: boolean) => {
+export const getIndexPage = async () => {
 	const data = await request({
-		query: PAGE_QUERY,
-		variables: { pageSlug },
-		preview,
+		query: INDEX_PAGE_QUERY,
 	});
 
-	return data;
+	return data?.allIndexProjects;
+};
+
+export const getAwardPage = async () => {
+	const data = await request({
+		query: AWARD_PAGE_QUERY,
+	});
+
+	return data?.allAwards;
+};
+
+export const getFeaturedProjects = async () => {
+	const data = await request({
+		query: FEATURED_PROJECTS_QUERY,
+	});
+
+	return data?.allFeaturedProjects;
 };

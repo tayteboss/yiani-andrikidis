@@ -22,15 +22,24 @@ const fetchAPI = async (query, { variables } = {}) => {
 };
 
 const getSiteData = async () => {
-	const query = `query Query {
-		siteConfiguration {
-			seo: _seoMetaTags {
-				attributes
-				content
-				tag
+	const query = `
+		query Query {
+			siteInformation {
+				email
+				phone
+				instagramLink
+				vimeoLink
+				profilePicture {
+					url
+				}
+				seoImage {
+					url
+				}
+				seoTitle
+				seoDescription
 			}
 		}
-	}`;
+	`;
 	const data = await fetchAPI(query);
 	if (data.length <= 0) {
 		return [];

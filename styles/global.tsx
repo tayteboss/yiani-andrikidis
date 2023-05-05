@@ -5,8 +5,11 @@ export const GlobalStyles = createGlobalStyle`
 	:root {
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
-		--colour-system-white-50: ${theme.colours.systemWhite.grey50};
-		--colour-system-black-50: ${theme.colours.systemBlack.grey50};
+		--colour-blue: ${theme.colours.blue};
+		--colour-black200: ${theme.colours.black200};
+		--colour-black400: ${theme.colours.black400};
+		--colour-black600: ${theme.colours.black600};
+		--colour-black800: ${theme.colours.black800};
 		--font-default: ${theme.fonts.default};
 		--transition-speed-default: ${theme.transitionSpeed.default};
 		--transition-speed-fast: ${theme.transitionSpeed.fast};
@@ -32,13 +35,13 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	::selection {
-		background-color: red;
-		color: black;
+		background-color: var(--colour-white);
+		color: var(--colour-blue);
 	}
 
 	html {
 		scroll-behavior: smooth;
-		background: ${theme.colours.white};
+		background: var(--colour-white);
 		font-size: 16px;
 
 		&.no-scroll {
@@ -171,7 +174,7 @@ export const GlobalStyles = createGlobalStyle`
 	{
 		opacity: 0;
 
-		transition: opacity 300ms ease;
+		transition: opacity var(--transition-speed-default) ease;
 
 		&--in-view
 		{
@@ -184,7 +187,7 @@ export const GlobalStyles = createGlobalStyle`
 		opacity: 0;
 		transform: translateY(15px);
 
-		transition: opacity 300ms cubic-bezier(0.65, 0, 0.35, 1), transform 300ms cubic-bezier(0.65, 0, 0.35, 1);
+		transition: opacity var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1), transform var(--transition-speed-default) cubic-bezier(0.65, 0, 0.35, 1);
 
 		&--in-view
 		{
@@ -198,7 +201,7 @@ export const GlobalStyles = createGlobalStyle`
 		transform: scale(0.95);
 		opacity: 0;
 
-		transition: opacity 300ms ease, transform 300ms ease;
+		transition: opacity var(--transition-speed-default) ease, transform var(--transition-speed-default) ease;
 
 		&--in-view
 		{

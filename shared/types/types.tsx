@@ -1,3 +1,15 @@
+export type HomeStatements = {
+	homePageStatements: [];
+};
+
+export type SiteData = {
+	seoTitle: string;
+	seoDescription: string;
+	seoImage: {
+		url: string;
+	}
+};
+
 export type MediaType = {
 	media: [
 		{

@@ -2,12 +2,11 @@ export const theme = {
 	colours: {
 		black: '#1A1919',
 		white: '#F2F3EF',
-		systemWhite: {
-			grey50: '#FEFEFD',
-		},
-		systemBlack: {
-			grey50: '#E8E8E8',
-		},
+		blue: '#0435E3',
+		black200: '#F2F2F4',
+		black400: '#BCBCC0',
+		black600: '#545456',
+		black800: '#242426',
 	},
 	fonts: {
 		default: 'arial',
@@ -48,9 +47,9 @@ export const theme = {
 		innerWrapper: '1920px',
 	},
 	transitionSpeed: {
-		default: '300ms',
-		fast: '200ms',
-		extraFast: '100ms',
+		default: '200ms',
+		fast: '100ms',
+		extraFast: '50ms',
 		slow: '500ms',
 		extraSlow: '800ms',
 	},
