@@ -1,5 +1,11 @@
-/* @font-face {
-	font-family: 'HaasGrot';
-	src: url('/fonts/HaasGrotDisp-55Roman.woff2') format('woff2'), url('/fonts/HaasGrotDisp-55Roman.woff') format('woff'), url('/fonts/HaasGrotDisp-55Roman.ttf') format('truetype'), url('/fonts/HaasGrotDisp-55Roman.otf') format('opentype');
+@font-face {
+	font-family: 'Lazzer-Medium';
+	src: url('/fonts/Lazzer-Medium.woff2') format('woff2'), url('/fonts/Lazzer-Medium.woff') format('woff'), url('/fonts/Lazzer-Medium.ttf') format('truetype');
 	font-display: swap;
-} */
+}
+
+@font-face {
+	font-family: 'Lazzer-SemiBold';
+	src: url('/fonts/Lazzer-SemiBold.woff2') format('woff2'), url('/fonts/Lazzer-SemiBold.woff') format('woff'), url('/fonts/Lazzer-SemiBold.ttf') format('truetype');
+	font-display: swap;
+}

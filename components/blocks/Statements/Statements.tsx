@@ -14,10 +14,9 @@ const Span = styled.span`
 
 const MoreButton = styled.button`
 	display: inline;
-	font-size: ${pxToRem(53)};
-	line-height: ${pxToRem(72)};
 	color: var(--colour-blue);
 	position: relative;
+	white-space: pre;
 
 	&::after {
 		content: "";
@@ -40,7 +39,7 @@ const Statements = (props: Props) => {
 		data
 	} = props;
 
-	const [index, setIndex] = useState(0);
+	const [index, setIndex] = useState(1);
 	const [displayedTexts, setDisplayedTexts] = useState<any>([data[0]]);
 
 	const handleClick = () => {
@@ -56,7 +55,12 @@ const Statements = (props: Props) => {
 					<Statement data={item} key={i} />
 				))}
 				<Span> </Span>
-				<MoreButton onClick={handleClick}>More</MoreButton>
+				<MoreButton 
+					onClick={handleClick}
+					className="type-h1"
+				>
+					More
+				</MoreButton>
 			</LayoutWrapper>
 		</StatementsWrapper>
 	);

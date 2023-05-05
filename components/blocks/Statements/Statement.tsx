@@ -2,13 +2,7 @@ import styled from 'styled-components';
 import HomeRichText from '../../common/HomeRichText';
 import pxToRem from '../../../utils/pxToRem';
 
-const StatementWrapper = styled.span`
-	.content, p, span, a {
-		display: inline;
-		font-size: ${pxToRem(53)};
-		line-height: ${pxToRem(65)};
-	}
-`;
+const StatementWrapper = styled.span``;
 
 type Props = {
 	data: {

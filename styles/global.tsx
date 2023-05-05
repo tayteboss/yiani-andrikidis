@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
+import pxToRem from '../utils/pxToRem';
 
 export const GlobalStyles = createGlobalStyle`
 	:root {
@@ -10,7 +11,8 @@ export const GlobalStyles = createGlobalStyle`
 		--colour-black400: ${theme.colours.black400};
 		--colour-black600: ${theme.colours.black600};
 		--colour-black800: ${theme.colours.black800};
-		--font-default: ${theme.fonts.default};
+		--font-lazzer-medium: ${theme.fonts.lazzerMedium};
+		--font-lazzer-semibold: ${theme.fonts.lazzerSemiBold};
 		--transition-speed-default: ${theme.transitionSpeed.default};
 		--transition-speed-fast: ${theme.transitionSpeed.fast};
 		--transition-speed-extra-fast: ${theme.transitionSpeed.extraFast};
@@ -55,6 +57,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	body {
 		position: relative;
+		font-family: var(--font-lazzer-semibold);
 	}
 
 	input,
@@ -63,9 +66,9 @@ export const GlobalStyles = createGlobalStyle`
 	button,
 	label,
 	body {
-		font-family: var(--font-default);
 		color: var(--colour-black);
 		line-height: 1.4;
+		font-family: var(--font-lazzer-semibold);
 	}
 
 	strong,
@@ -80,6 +83,7 @@ export const GlobalStyles = createGlobalStyle`
 	a {
 		text-decoration: underline;
 		color: var(--colour-black);
+		font-family: var(--font-lazzer-semibold);
 		transition: all var(--transition-speed-default) var(--transition-ease);
 	}
 
@@ -90,7 +94,7 @@ export const GlobalStyles = createGlobalStyle`
 	h1,
 	.type-h1 {
 		font-size: ${theme.size.h1};
-		line-height: 2.813rem;
+		line-height: ${pxToRem(72)};
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
@@ -100,14 +104,13 @@ export const GlobalStyles = createGlobalStyle`
 		@media ${theme.mediaBreakpoints.mobile}
 		{
 			font-size: ${theme.sizeMobile.h1};
-			line-height: 2.125rem;
 		}
 	}
 
 	h2,
 	.type-h2 {
 		font-size: ${theme.size.h2};
-		line-height: 2.25rem;
+		line-height: ${pxToRem(42)};
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
@@ -117,14 +120,13 @@ export const GlobalStyles = createGlobalStyle`
 		@media ${theme.mediaBreakpoints.mobile}
 		{
 			font-size: ${theme.sizeMobile.h2};
-			line-height: 1.75rem;
 		}
 	}
 
 	h3,
 	.type-h3 {
 		font-size: ${theme.size.h3};
-		line-height: 1.938rem;
+		line-height: ${pxToRem(18)};
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
@@ -134,14 +136,13 @@ export const GlobalStyles = createGlobalStyle`
 		@media ${theme.mediaBreakpoints.mobile}
 		{
 			font-size: ${theme.sizeMobile.h3};
-			line-height: 1.563rem;
 		}
 	}
 
 	h4,
 	.type-h4 {
 		font-size: ${theme.size.h4};
-		line-height: 1.563rem;
+		line-height: ${pxToRem(18)};
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
@@ -151,7 +152,6 @@ export const GlobalStyles = createGlobalStyle`
 		@media ${theme.mediaBreakpoints.mobile}
 		{
 			font-size: ${theme.sizeMobile.h4};
-			line-height: 1.375rem;
 		}
 	}
 
@@ -161,12 +161,11 @@ export const GlobalStyles = createGlobalStyle`
 	button,
 	div {
 		font-size: ${theme.size.body};
-		line-height: 1.938rem;
+		line-height: ${pxToRem(18)};
 
 		@media ${theme.mediaBreakpoints.mobile}
 		{
 			font-size: ${theme.sizeMobile.body};
-			line-height: 1.75rem;
 		}
 	}
 
