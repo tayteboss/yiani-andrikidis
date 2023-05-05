@@ -10,6 +10,9 @@ const StatementsWrapper = styled.div`
 	z-index: 1;
 	padding-bottom: calc(var(--feature-wrapper-height) + 32px);
 	background: var(--colour-white);
+	filter: brightness(var(--brightness));
+
+	transition: filter var(--transition-speed-default) var(--transition-ease);
 `;
 
 const Span = styled.span`

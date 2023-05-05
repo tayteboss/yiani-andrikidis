@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle`
 		--transition-speed-extra-slow: ${theme.transitionSpeed.extraSlow};
 		--transition-ease: cubic-bezier(0.65, 0, 0.35, 1);
 		--feature-wrapper-height: 30vh;
+		--brightness: 1;
 	}
 
 	* {
@@ -98,6 +99,7 @@ export const GlobalStyles = createGlobalStyle`
 	.type-h1 {
 		font-size: ${theme.size.h1};
 		line-height: ${pxToRem(72)};
+		letter-spacing: -0.02em;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
@@ -115,6 +117,7 @@ export const GlobalStyles = createGlobalStyle`
 	.type-h2 {
 		font-size: ${theme.size.h2};
 		line-height: ${pxToRem(42)};
+		letter-spacing: -0.02em;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
@@ -132,6 +135,7 @@ export const GlobalStyles = createGlobalStyle`
 	.type-h3 {
 		font-size: ${theme.size.h3};
 		line-height: ${pxToRem(18)};
+		letter-spacing: -0.02em;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
@@ -148,6 +152,7 @@ export const GlobalStyles = createGlobalStyle`
 	.type-h4 {
 		font-size: ${theme.size.h4};
 		line-height: ${pxToRem(18)};
+		letter-spacing: -0.02em;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{

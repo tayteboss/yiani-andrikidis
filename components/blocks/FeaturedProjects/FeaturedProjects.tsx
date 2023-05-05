@@ -15,10 +15,10 @@ const FeaturedProjectsWrapper = styled.div`
 	padding: ${pxToRem(16)} 0;
 	background: var(--colour-black800);
 	height: var(--feature-wrapper-height);
-	border-top-right-radius: 8px;
-	border-top-left-radius: 8px;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
 
-	transition: all var(--transition-speed-slow) var(--transition-ease);
+	transition: all 400ms var(--transition-ease);
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		padding: 0;
@@ -86,6 +86,14 @@ const FeaturedProjects = (props: Props) => {
 		}
 	);
 
+	const setStatementsBrightness = () => {
+		if (isMini) {
+			return 1;
+		} else {
+			return 0.3;
+		}
+	};
+
 	const setFeatureWrapperHeight = () => {
 		if (isMini) {
 			return '30vh';
@@ -96,6 +104,7 @@ const FeaturedProjects = (props: Props) => {
 
 	useEffect(() => {
 		document.documentElement.style.setProperty('--feature-wrapper-height', setFeatureWrapperHeight());
+		document.documentElement.style.setProperty('--brightness', setStatementsBrightness());
 	}, [isMini, viewportWidth]);
 
 	return (
