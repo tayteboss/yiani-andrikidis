@@ -9,7 +9,7 @@ const fetchAPI = async (query, { variables } = {}) => {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
-			authorization: `Bearer ${process.env.NEXT_PUBLIC_DATOCMS_API_TOKEN}`,
+			authorization: `Bearer ${process.env.DATOCMS_API_TOKEN}`,
 		},
 		body: JSON.stringify({
 			query,
