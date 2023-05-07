@@ -43,6 +43,7 @@ export type AwardsType = {
 	videoSnippetWebm: {
 		url: string;
 	}
+	year: string
 };
 
 export type HomeStatements = {
