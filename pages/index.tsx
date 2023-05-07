@@ -1,5 +1,3 @@
-import Head from 'next/head';
-import { renderMetaTags } from 'react-datocms';
 import styled from 'styled-components';
 import { getFeaturedProjects, getHomePage, getSiteData } from '../lib/datocms';
 import { NextSeo } from 'next-seo';

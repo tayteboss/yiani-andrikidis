@@ -15,6 +15,19 @@ export type FeaturedProjectType = {
 	}
 };
 
+export type ClientType = {
+	client: string;
+	project: [];
+};
+
+export type ClientProjectType = {
+	awardsRecognition: {};
+	credits: {};
+	role: string;
+	title: string;
+	link: string;
+};
+
 export type HomeStatements = {
 	homePageStatements: [];
 };

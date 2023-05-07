@@ -69,7 +69,7 @@ export const GlobalStyles = createGlobalStyle`
 	button,
 	label,
 	body {
-		color: var(--colour-black);
+		color: var(--colour-black800);
 		line-height: 1.4;
 		font-family: var(--font-lazzer-semibold);
 	}
@@ -85,7 +85,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	a {
 		text-decoration: underline;
-		color: var(--colour-black);
+		color: var(--colour-black800);
 		font-family: var(--font-lazzer-semibold);
 		transition: all var(--transition-speed-default) var(--transition-ease);
 	}

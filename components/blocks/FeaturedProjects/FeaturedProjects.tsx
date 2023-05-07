@@ -3,10 +3,11 @@ import useEmblaCarousel from 'embla-carousel-react'
 import FeaturedProject from './FeaturedProject';
 import pxToRem from '../../../utils/pxToRem';
 import FeaturedDragButton from '../../elements/FeaturedDragButton';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useViewportWidth from '../../../hooks/useViewportWidth';
 import { FeaturedProjectType } from '../../../shared/types/types';
 import MenuTrigger from '../../elements/MenuTrigger';
+import { useClickOutside } from '../../../hooks/useClickOutside';
 
 const FeaturedProjectsWrapper = styled.div`
 	position: fixed;
@@ -80,13 +81,21 @@ const FeaturedProjects = (props: Props) => {
 	const viewportWidth = useViewportWidth();
 
 	const [emblaRef, emblaApi] = useEmblaCarousel(
-		{ 
+		{
 			loop: true,
 			align: 0,
 			dragFree: true,
 			axis: viewportWidth === 'mobile' ? 'y' : 'x'
 		}
 	);
+
+	const containerRef = useRef<HTMLDivElement>(null!);
+
+	useClickOutside(containerRef, () => {
+		if (!isMini) {
+			setIsMini(true);
+		}
+	});
 
 	const setStatementsBrightness = () => {
 		if (isMini) {
@@ -110,7 +119,7 @@ const FeaturedProjects = (props: Props) => {
 	}, [isMini, viewportWidth]);
 
 	return (
-		<FeaturedProjectsWrapper>
+		<FeaturedProjectsWrapper ref={containerRef}>
 			<Embla className="embla" ref={emblaRef}>
 				<EmblaContainer className="embla__container">
 					{hasData && data.map((item: FeaturedProjectType, i: number) => (

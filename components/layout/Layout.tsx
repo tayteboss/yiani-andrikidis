@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useEffect, useState } from 'react';
 import Menu from './Menu';
+import { useRouter } from 'next/router';
 
-export const MenuContext = createContext(null);
+export const MenuContext = createContext<any>(null);
 
 const Main = styled.main``;
 
@@ -16,6 +17,12 @@ const Layout = (props: Props) => {
 	} = props;
 
 	const [menuIsOpen, setMenuIsOpen] = useState(false);
+
+	const router = useRouter();
+
+	useEffect(() => {
+		setMenuIsOpen(false);
+	}, [router]);
 
 	return (
 		<MenuContext.Provider value={{ menuIsOpen, setMenuIsOpen }}>
