@@ -107,7 +107,7 @@ const Menu = (props: Props) => {
 		vimeoLink,
 		email,
 		phone,
-	} = options.siteInformation;
+	} = options?.siteInformation;
 
 	return (
 		<>
