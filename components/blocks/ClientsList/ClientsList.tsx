@@ -6,7 +6,7 @@ import pxToRem from '../../../utils/pxToRem';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 const ClientsListWrapper = styled.div`
-	padding: ${pxToRem(16)} 0 ${pxToRem(120)};
+	padding: ${pxToRem(16)} 0 ${pxToRem(240)};
 `;
 
 const ClientsList = (props: any) => {

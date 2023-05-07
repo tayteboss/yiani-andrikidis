@@ -6,7 +6,7 @@ import LayoutGrid from '../../common/LayoutGrid';
 import AwardsCard from '../../elements/AwardsCard';
 
 const AwardsListWrapper = styled.div`
-	padding: ${pxToRem(16)} 0 ${pxToRem(120)};
+	padding: ${pxToRem(16)} 0 ${pxToRem(240)};
 
 	.grid {
 		row-gap: ${pxToRem(32)};

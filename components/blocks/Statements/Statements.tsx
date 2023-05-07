@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import Statement from './Statement';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const StatementsWrapper = styled.div`
 	display: inline-block;
@@ -19,7 +20,7 @@ const Span = styled.span`
 	white-space: pre;
 `;
 
-const MoreButton = styled.button`
+const MoreButton = styled(motion.button)`
 	display: inline;
 	color: var(--colour-blue);
 	position: relative;
@@ -42,6 +43,24 @@ const MoreButton = styled.button`
 	}
 `;
 
+const variants = {
+	hover: {
+		opacity: [1, 0, 1],
+		transition: {
+			duration: 0.2,
+			repeat: Infinity,
+			repeatType: "reverse",
+			repeatDelay: 0.2
+		},
+	},
+	initial: {
+		opacity: 1,
+		transition: {
+			duration: 0.2,
+		},
+	},
+};
+
 type Props = {
 	data: any;
 };
@@ -53,12 +72,47 @@ const Statements = (props: Props) => {
 
 	const [index, setIndex] = useState(1);
 	const [displayedTexts, setDisplayedTexts] = useState<any>([data[0]]);
+	const [isHovered, setIsHovered] = useState(false);
+	const [moreO, setMoreO] = useState("o");
+	const [moreBtnTooCloseToRightEdge, setMoreBtnTooCloseToRightEdge] = useState(false);
+
+	const moreBtnRef = useRef(null);
 
 	const handleClick = () => {
 		const newDisplayedTexts = [...displayedTexts, data[index]];
 		setDisplayedTexts(newDisplayedTexts);
 		setIndex((prevIndex) => (prevIndex + 1) % data.length);
+		setMoreO("o");
 	};
+
+	useEffect(() => {
+		const moreBtn = moreBtnRef?.current;
+		if (!moreBtn) return;
+
+		const threshold = 300;
+		const rect = moreBtn.getBoundingClientRect();
+		const distanceToRightEdge = window.innerWidth - rect.right;
+		const tooClose = distanceToRightEdge <= threshold;
+
+		setMoreBtnTooCloseToRightEdge(tooClose);
+
+		if (moreBtnTooCloseToRightEdge || tooClose) return;
+
+		if (isHovered) {
+			const interval = setInterval(() => {
+				setMoreO((prevMoreO) => {
+					if (prevMoreO.length === 3) {
+						clearInterval(interval);
+						return prevMoreO;
+					}
+					return prevMoreO + "o";
+				});
+			}, 100);
+			return () => clearInterval(interval);
+		} else {
+			setMoreO("o");
+		}
+	}, [isHovered, moreBtnTooCloseToRightEdge]);
 
 	return (
 		<StatementsWrapper>
@@ -70,8 +124,11 @@ const Statements = (props: Props) => {
 				<MoreButton 
 					onClick={handleClick}
 					className="type-h1"
+					onMouseOver={() => setIsHovered(true)}
+					onMouseOut={() => setIsHovered(false)}
+					ref={moreBtnRef}
 				>
-					More
+					M{moreO}re
 				</MoreButton>
 			</LayoutWrapper>
 		</StatementsWrapper>

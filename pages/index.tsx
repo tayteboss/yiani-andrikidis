@@ -25,10 +25,6 @@ const Page = (props: Props) => {
 		featuredProjects
 	} = props;
 
-	console.log('homeData', homeData);
-	console.log('siteData', siteData);
-	console.log('featuredProjects', featuredProjects);
-
 	return (
 		<PageWrapper>
 			<NextSeo
