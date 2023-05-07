@@ -8,6 +8,7 @@ import useViewportWidth from '../../../hooks/useViewportWidth';
 import { FeaturedProjectType } from '../../../shared/types/types';
 import MenuTrigger from '../../elements/MenuTrigger';
 import { useClickOutside } from '../../../hooks/useClickOutside';
+import VideoLightBox from '../VideoLightBox';
 
 const FeaturedProjectsWrapper = styled.div`
 	position: fixed;
@@ -75,6 +76,7 @@ const FeaturedProjects = (props: Props) => {
 	} = props;
 
 	const [isMini, setIsMini] = useState(true);
+	const [showFullVideo, setShowFullVideo] = useState({ isActive: false, url: "" });
 
 	const hasData = data && data.length > 0;
 
@@ -119,19 +121,29 @@ const FeaturedProjects = (props: Props) => {
 	}, [isMini, viewportWidth]);
 
 	return (
-		<FeaturedProjectsWrapper ref={containerRef}>
-			<Embla className="embla" ref={emblaRef}>
-				<EmblaContainer className="embla__container">
-					{hasData && data.map((item: FeaturedProjectType, i: number) => (
-						<EmblaSlide className="embla__slide" key={i}>
-							<FeaturedProject data={item} />
-						</EmblaSlide>
-					))}
-				</EmblaContainer>
-			</Embla>
-			<FeaturedDragButton setIsMini={setIsMini} isMini={isMini} />
-			<MenuTrigger />
-		</FeaturedProjectsWrapper>
+		<>
+			<FeaturedProjectsWrapper ref={containerRef}>
+				<Embla className="embla" ref={emblaRef}>
+					<EmblaContainer className="embla__container">
+						{hasData && data.map((item: FeaturedProjectType, i: number) => (
+							<EmblaSlide className="embla__slide" key={i}>
+								<FeaturedProject
+									data={item}
+									setShowFullVideo={setShowFullVideo}
+								/>
+							</EmblaSlide>
+						))}
+					</EmblaContainer>
+				</Embla>
+				<FeaturedDragButton setIsMini={setIsMini} isMini={isMini} />
+				<MenuTrigger />
+			</FeaturedProjectsWrapper>
+			<VideoLightBox
+				url={showFullVideo?.url}
+				isActive={showFullVideo.isActive}
+				setShowFullVideo={setShowFullVideo}
+			/>
+		</>
 	);
 };
 

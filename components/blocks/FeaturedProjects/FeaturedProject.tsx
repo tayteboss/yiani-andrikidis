@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { FeaturedProjectType } from '../../../shared/types/types';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import pxToRem from '../../../utils/pxToRem';
+import VideoLightBox from '../VideoLightBox';
 
 const FeaturedProjectWrapper = styled.div`
 	height: 100%;
@@ -64,7 +65,7 @@ const Role = styled.p`
 	opacity: 0;
 `;
 
-const Link = styled.a`
+const FullVideoTrigger = styled.button`
 	position: absolute;
 	bottom: ${pxToRem(5)};
 	left: ${pxToRem(10)};
@@ -79,12 +80,14 @@ const Link = styled.a`
 `;
 
 type Props = {
-	data: FeaturedProjectType
+	data: FeaturedProjectType;
+	setShowFullVideo: (data: { isActive: boolean; url: string }) => void;
 };
 
 const FeaturedProject = (props: Props) => {
 	const {
-		data
+		data,
+		setShowFullVideo
 	} = props;
 
 	const {
@@ -93,45 +96,48 @@ const FeaturedProject = (props: Props) => {
 		placeholderImage,
 		snippetVideoMp4,
 		snippetVideoWebm,
-		vimeoLink
+		vimeoLink,
 	} = data;
 
 	const videoRef = useRef<HTMLVideoElement>(null);
 
 	return (
-		<FeaturedProjectWrapper>
-			{title && (
-				<Title className="feature__title">{title}</Title>
-			)}
-			{role && (
-				<Role className="feature__role">{role}</Role>
-			)}
-			{vimeoLink?.url && (
-				<Link
-					href={vimeoLink.url}
-					target="_blank"
-					className="feature__link"
-				>
-					Full video
-				</Link>
-			)}
-			<VideoComponentWrapper className="video-component-wrapper">
-				{snippetVideoMp4?.url && (
-					<Video
-						autoPlay
-						muted
-						playsInline
-						loop
-						ref={videoRef}
-						preload="auto"
-						poster={placeholderImage?.url}
-					>
-						<source src={snippetVideoMp4?.url} type="video/mp4" />
-						<source src={snippetVideoWebm?.url} type="video/webm" />
-					</Video>
+		<>
+			<FeaturedProjectWrapper>
+				{title && (
+					<Title className="feature__title">{title}</Title>
 				)}
-			</VideoComponentWrapper>
-		</FeaturedProjectWrapper>
+				{role && (
+					<Role className="feature__role">{role}</Role>
+				)}
+				{vimeoLink?.url && (
+					<FullVideoTrigger
+						onClick={() => setShowFullVideo(
+							{ isActive: true, url: vimeoLink.url }
+						)}
+						className="feature__link"
+					>
+						Full video
+					</FullVideoTrigger>
+				)}
+				<VideoComponentWrapper className="video-component-wrapper">
+					{snippetVideoMp4?.url && (
+						<Video
+							autoPlay
+							muted
+							playsInline
+							loop
+							ref={videoRef}
+							preload="auto"
+							poster={placeholderImage?.url}
+						>
+							<source src={snippetVideoMp4?.url} type="video/mp4" />
+							<source src={snippetVideoWebm?.url} type="video/webm" />
+						</Video>
+					)}
+				</VideoComponentWrapper>
+			</FeaturedProjectWrapper>
+		</>
 	);
 };
 

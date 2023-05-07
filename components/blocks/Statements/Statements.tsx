@@ -12,6 +12,7 @@ const StatementsWrapper = styled.div`
 	padding-bottom: calc(var(--feature-wrapper-height) + 32px);
 	background: var(--colour-white);
 	filter: brightness(var(--brightness));
+	min-height: 100vh;
 
 	transition: filter var(--transition-speed-default) var(--transition-ease);
 `;
