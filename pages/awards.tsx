@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { getIndexPage, getSiteData } from '../lib/datocms';
+import { getAwardPage, getIndexPage, getSiteData } from '../lib/datocms';
 import { NextSeo } from 'next-seo';
-import { ClientType, SiteData } from '../shared/types/types';
-import ClientsList from '../components/blocks/ClientsList';
+import { SiteData } from '../shared/types/types';
+import Clients from '../components/blocks/ClientsList';
 import MenuTrigger from '../components/elements/MenuTrigger';
 import pxToRem from '../utils/pxToRem';
 import sortClientDataAlphabetically from '../utils/sortClientDataAlphabetically';
+import AwardsList from '../components/blocks/AwardsList';
 import Logo from '../components/elements/Logo';
 
 const PageWrapper = styled.div`
@@ -21,19 +22,19 @@ const PageWrapper = styled.div`
 
 type Props = {
 	siteData: SiteData
-	clientData: ClientType[]
+	awardsData: {}
 };
 
-const Clients = (props: Props) => {
+const Awards = (props: Props) => {
 	const {
 		siteData,
-		clientData,
+		awardsData,
 	} = props;
 
 	return (
 		<PageWrapper>
 			<NextSeo
-				title={`Clients - ${siteData?.seoTitle}` || 'Yiani Andrikidis'}
+				title={`Awards - ${siteData?.seoTitle}` || 'Yiani Andrikidis'}
 				description={siteData?.seoDescription || 'Yiani Andrikidis'}
 				openGraph={{
 					images: [
@@ -45,25 +46,23 @@ const Clients = (props: Props) => {
 					],
 				}}
 			/>
-			<ClientsList data={clientData} />
-			<MenuTrigger />
+			<AwardsList data={awardsData} />
 			<Logo />
+			<MenuTrigger />
 		</PageWrapper>
 	);
 };
 
 export async function getStaticProps() {
 	const siteData = await getSiteData();
-	let clientData = await getIndexPage();
-
-	clientData = sortClientDataAlphabetically(clientData);
+	let awardsData = await getAwardPage();
 
 	return {
 		props: {
 			siteData,
-			clientData,
+			awardsData,
 		},
 	};
 }
 
-export default Clients;
+export default Awards;

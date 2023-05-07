@@ -1,20 +1,15 @@
 import styled from 'styled-components';
-import LayoutGrid from '../../common/LayoutGrid';
 import ClientCard from '../../elements/ClientCard';
 import { ClientType } from '../../../shared/types/types';
 import LayoutWrapper from '../../common/LayoutWrapper';
 import pxToRem from '../../../utils/pxToRem';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
-const ClientsWrapper = styled.div`
-	padding: ${pxToRem(16)} 0;
-
-	.grid {
-		row-gap: ${pxToRem(16)};
-	}
+const ClientsListWrapper = styled.div`
+	padding: ${pxToRem(16)} 0 ${pxToRem(120)};
 `;
 
-const Clients = (props: any) => {
+const ClientsList = (props: any) => {
 	const {
 		data
 	} = props;
@@ -22,7 +17,7 @@ const Clients = (props: any) => {
 	const hasData = data.length > 0;
 
 	return (
-		<ClientsWrapper>
+		<ClientsListWrapper>
 			<LayoutWrapper>
 				<ResponsiveMasonry
 					columnsCountBreakPoints={{350: 1, 500: 2, 900: 3, 1200: 4, 1800: 5}}
@@ -38,8 +33,8 @@ const Clients = (props: any) => {
 					</Masonry>
 				</ResponsiveMasonry>
 			</LayoutWrapper>
-		</ClientsWrapper>
+		</ClientsListWrapper>
 	);
 };
 
-export default Clients;
+export default ClientsList;

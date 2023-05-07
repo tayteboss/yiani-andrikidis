@@ -28,6 +28,23 @@ export type ClientProjectType = {
 	link: string;
 };
 
+export type AwardsType = {
+	awardsRecognition: {};
+	placeholderThumbnail: {
+		url: string;
+	};
+	projectType: string;
+	title: string;
+	role: string;
+	link: string;
+	videoSnippetMp4: {
+		url: string;
+	}
+	videoSnippetWebm: {
+		url: string;
+	}
+};
+
 export type HomeStatements = {
 	homePageStatements: [];
 };

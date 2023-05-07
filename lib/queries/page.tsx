@@ -64,6 +64,7 @@ export const AWARD_PAGE_QUERY: string = `
 			}
 			projectType
 			role
+			year
 			title
 			videoSnippetMp4 {
 				url

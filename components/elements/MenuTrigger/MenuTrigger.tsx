@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import { useContext } from 'react';
 import { MenuContext } from '../../layout/Layout';
-import { useRouter } from 'next/router';
 
 const MenuTriggerWrapper = styled.button`
 	position: absolute;
@@ -29,32 +28,8 @@ const MenuTriggerWrapper = styled.button`
 	}
 `;
 
-const Indicator = styled.div`
-	position: absolute;
-	right: calc(100% + 8px);
-	top: 50%;
-	transform: translateY(-50%);
-	color: var(--colour-black);
-	opacity: 0;
-	pointer-events: none;
-`;
-
 const MenuTrigger = () => {
 	const { setMenuIsOpen } = useContext(MenuContext);
-
-	const router = useRouter();
-
-	const getPageTitle = () => {
-		if (router.pathname === '/') {
-			return 'Home';
-		}
-		if (router.pathname === '/clients') {
-			return 'Clients';
-		}
-		if (router.pathname === '/awards') {
-			return 'Awards';
-		}
-	};
 
 	return (
 		<MenuTriggerWrapper
@@ -62,9 +37,6 @@ const MenuTrigger = () => {
 			className="menu-trigger"
 		>
 			Menu
-			<Indicator className="type-p">
-				{getPageTitle()}
-			</Indicator>
 		</MenuTriggerWrapper>
 	);
 };
