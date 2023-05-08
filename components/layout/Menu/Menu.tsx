@@ -26,6 +26,10 @@ const TopWrapper = styled.div`
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
+
+			@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+				height: calc((var(--vh) * 60) - 16px);
+			}
 		}
 	}
 `;

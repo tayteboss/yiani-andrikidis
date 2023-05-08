@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { FeaturedProjectType } from '../../../shared/types/types';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import pxToRem from '../../../utils/pxToRem';
-import VideoLightBox from '../VideoLightBox';
 
 const FeaturedProjectWrapper = styled.div`
-	height: 100%;
 	position: relative;
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
@@ -26,7 +24,7 @@ const FeaturedProjectWrapper = styled.div`
 const VideoComponentWrapper = styled.div`
 	position: relative;
 	overflow: hidden;
-	height: 100%;
+	width: auto;
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		position: absolute;
@@ -41,8 +39,15 @@ const VideoComponentWrapper = styled.div`
 
 const Video = styled.video`
 	object-fit: cover;
-	height: 100%;
+	height: var(--feature-wrapper-height);
 	width: auto;
+
+	transition: all 400ms var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		height: auto;
+		width: 100%;
+	}
 `;
 
 const Title = styled.p`

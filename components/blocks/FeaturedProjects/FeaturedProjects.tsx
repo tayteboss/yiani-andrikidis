@@ -18,20 +18,18 @@ const FeaturedProjectsWrapper = styled.div`
 	width: 100%;
 	padding: ${pxToRem(16)} 0;
 	background: var(--colour-black800);
-	height: var(--feature-wrapper-height);
 	border-top-right-radius: 4px;
 	border-top-left-radius: 4px;
 
-	transition: all 400ms var(--transition-ease);
-
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		padding: 0;
+		height: var(--feature-wrapper-height);
+		transition: all 400ms var(--transition-ease);
 	}
 `;
 
 const Embla = styled.div`
 	overflow: hidden;
-	height: 100%;
 	padding-left: ${pxToRem(16)};
 	cursor: grab;
 
@@ -46,10 +44,12 @@ const Embla = styled.div`
 
 const EmblaContainer = styled.div`
 	display: flex;
-	height: 100%;
+	align-items: flex-start;
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		flex-direction: column;
+		height: 100% !important;
+		padding-bottom: 32px;
 	}
 `;
 
@@ -57,12 +57,12 @@ const EmblaSlide = styled.div`
 	flex: 0 0 auto;
 	min-width: 0;
 	margin-right: ${pxToRem(16)};
-	height: 100%;
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		margin-right: 0;
 		margin-bottom: ${pxToRem(16)};
-		height: auto;
+		height: 100%;
+		width: 100%;
 	}
 `;
 
@@ -87,7 +87,7 @@ const FeaturedProjects = (props: Props) => {
 			loop: true,
 			align: 0,
 			dragFree: true,
-			axis: viewportWidth === 'mobile' ? 'y' : 'x'
+			axis: viewportWidth === 'mobile' ? 'y' : 'x',
 		}
 	);
 
