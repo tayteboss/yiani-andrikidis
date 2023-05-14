@@ -3,18 +3,24 @@ import LayoutWrapper from '../../common/LayoutWrapper';
 import Statement from './Statement';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import pxToRem from '../../../utils/pxToRem';
 
 const StatementsWrapper = styled.div`
 	display: inline-block;
 	overflow: auto;
 	position: relative;
 	z-index: 1;
-	padding-bottom: calc(var(--feature-wrapper-height) + 32px);
+	padding-top: ${pxToRem(8)};
+	padding-bottom: calc(var(--feature-wrapper-height) + 64px);
 	background: var(--colour-white);
 	filter: brightness(var(--brightness));
 	min-height: 100vh;
 
 	transition: filter var(--transition-speed-default) var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		padding-bottom: calc(var(--feature-wrapper-height) + 32px);
+	}
 `;
 
 const Span = styled.span`
@@ -43,24 +49,6 @@ const MoreButton = styled(motion.button)`
 		}
 	}
 `;
-
-const variants = {
-	hover: {
-		opacity: [1, 0, 1],
-		transition: {
-			duration: 0.2,
-			repeat: Infinity,
-			repeatType: "reverse",
-			repeatDelay: 0.2
-		},
-	},
-	initial: {
-		opacity: 1,
-		transition: {
-			duration: 0.2,
-		},
-	},
-};
 
 type Props = {
 	data: any;

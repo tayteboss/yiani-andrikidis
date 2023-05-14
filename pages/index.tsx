@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo';
 import { SiteData } from '../shared/types/types';
 import Statements from '../components/blocks/Statements';
 import FeaturedProjects from '../components/blocks/FeaturedProjects';
+import { useEffect } from 'react';
 
 const PageWrapper = styled.div`
 	min-height: calc(var(--vh) * 100);
@@ -24,6 +25,10 @@ const Page = (props: Props) => {
 		siteData,
 		featuredProjects
 	} = props;
+
+	useEffect(() => {
+		document.documentElement.style.setProperty('--highlight-colour', siteData?.highlightColour?.cssRgb);
+	}, [siteData]);
 
 	return (
 		<PageWrapper>

@@ -24,6 +24,7 @@ const ClientProjects = (props: Props) => {
 					credits={item?.credits}
 					role={item?.role}
 					link={item?.link}
+					thumbnail={item?.thumbnail}
 					key={i}
 				/>
 			))}

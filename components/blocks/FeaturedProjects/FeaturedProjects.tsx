@@ -111,7 +111,7 @@ const FeaturedProjects = (props: Props) => {
 		if (isMini) {
 			return '30vh';
 		} else {
-			return viewportWidth === 'mobile' ? '90vh' : '70vh';
+			return viewportWidth === 'mobile' ? '80vh' : '70vh';
 		}
 	};
 

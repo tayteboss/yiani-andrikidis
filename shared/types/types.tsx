@@ -26,6 +26,9 @@ export type ClientProjectType = {
 	role: string;
 	title: string;
 	link: string;
+	thumbnail?: {
+		url: string;
+	}
 };
 
 export type AwardsType = {
@@ -56,6 +59,9 @@ export type SiteData = {
 	seoImage: {
 		url: string;
 	}
+	highlightColour: {
+		cssRgb: string;
+	};
 };
 
 export type MediaType = {

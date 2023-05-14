@@ -6,20 +6,23 @@ import { useRouter } from 'next/router';
 const LogoWrapper = styled.div`
 	display: flex;
 	position: fixed;
-	bottom: ${pxToRem(16)};
-	left: ${pxToRem(16)};
+	bottom: 0;
+	left: 0;
+	padding: ${pxToRem(32)} ${pxToRem(16)};
+	width: 100%;
+	background: var(--colour-white);;
 	color: var(--colour-white);
-	mix-blend-mode: difference;
+	z-index: 5;
 `;
 
 const LogoTag = styled.a`
 	text-decoration: none;
-	color: var(--colour-white);
+	color: var(--colour-black800);
 	white-space: pre;
 `;
 
 const Indicator = styled.span`
-	color: var(--colour-white);
+	color: var(--colour-black800);
 	pointer-events: none;
 	white-space: pre;
 `;

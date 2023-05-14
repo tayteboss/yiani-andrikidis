@@ -16,6 +16,10 @@ const MenuWrapper = styled.div`
 	z-index: 50;
 	display: flex;
 	flex-direction: column;
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		overflow: auto;
+	}
 `;
 
 const TopWrapper = styled.div`
@@ -61,6 +65,10 @@ const BottomWrapper = styled.div`
 	flex-direction: column;
 	justify-content: flex-end;
 	flex: 1;
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		display: none;
+	}
 `;
 
 const LinkTag = styled.a`
@@ -89,11 +97,28 @@ const CloseButton = styled.button`
 		background: var(--colour-white);
 
 		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-			height: 3px;
-			bottom: 2px;
+			display: none;
 		}
 	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		position: fixed;
+		top: ${pxToRem(16)};
+		right: ${pxToRem(16)};
+	}
 `;
+
+const ImageWrapper = styled.div`
+	max-width: 350px;
+	margin-top: ${pxToRem(32)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		width: 100%;
+		max-width: unset;
+	}
+`;
+
+const Img = styled.img``;
 
 type Props = {
 	menuIsOpen: boolean,
@@ -111,6 +136,8 @@ const Menu = (props: Props) => {
 		vimeoLink,
 		email,
 		phone,
+		cvLink,
+		profilePicture
 	} = options?.siteInformation;
 
 	return (
@@ -156,6 +183,16 @@ const Menu = (props: Props) => {
 									<Link href={`tel: ${phone}`} passHref>
 										<LinkTag className="type-h1">Phone</LinkTag>
 									</Link>
+								)}
+								{cvLink && (
+									<Link href={cvLink} passHref>
+										<LinkTag className="type-h1" target="_blank">CV</LinkTag>
+									</Link>
+								)}
+								{profilePicture && (
+									<ImageWrapper>
+										<Img src={profilePicture.url} />
+									</ImageWrapper>
 								)}
 							</SecondaryListWrapper>
 						</LayoutGrid>

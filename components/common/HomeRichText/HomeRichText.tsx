@@ -24,7 +24,7 @@ const SpecialSpan = styled.span`
 	transition: color 0s ease 1s;
 
 	&:hover {
-		color: var(--colour-blue);
+		color: var(--highlight-colour);
 
 		transition: all 0s ease 0s;
 	}

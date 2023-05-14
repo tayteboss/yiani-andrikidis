@@ -9,6 +9,14 @@ const AwardsCardThumbnailWrapper = styled.div`
 	position: relative;
 `;
 
+const Img = styled.img`
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	inset: 0;
+`;
+
 const Video = styled.video`
 	object-fit: cover;
 	height: 100%;
@@ -52,7 +60,7 @@ const AwardsCardThumbnail = (props: Props) => {
 
 	return (
 		<AwardsCardThumbnailWrapper>
-			{videoSnippetMp4 && (
+			{videoSnippetMp4 ? (
 				<Video
 					autoPlay={false}
 					muted
@@ -65,6 +73,8 @@ const AwardsCardThumbnail = (props: Props) => {
 					<source src={videoSnippetMp4.url} type="video/mp4" />
 					<source src={videoSnippetWebm.url} type="video/webm" />
 				</Video>
+			) : (
+				<Img src={placeholderThumbnail?.url} />
 			)}
 		</AwardsCardThumbnailWrapper>
 	);

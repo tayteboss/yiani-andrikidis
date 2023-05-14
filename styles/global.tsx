@@ -20,6 +20,7 @@ export const GlobalStyles = createGlobalStyle`
 		--transition-speed-extra-slow: ${theme.transitionSpeed.extraSlow};
 		--transition-ease: cubic-bezier(0.65, 0, 0.35, 1);
 		--feature-wrapper-height: 30vh;
+		--highlight-colour: ${theme.colours.blue};
 		--brightness: 1;
 	}
 

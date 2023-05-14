@@ -47,6 +47,9 @@ export const INDEX_PAGE_QUERY: string = `
 				link
 				role
 				title
+				thumbnail {
+					url
+				}
 			}
 		}
 	}

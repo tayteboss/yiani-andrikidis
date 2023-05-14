@@ -13,6 +13,10 @@ const SITE_DATA_QUERY: string = `
 			}
 			seoTitle
 			seoDescription
+			highlightColour {
+				cssRgb
+			}
+			cvLink
 		}
 	}
 `;

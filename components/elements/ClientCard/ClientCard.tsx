@@ -10,6 +10,10 @@ const ClientCardWrapper = styled.div`
 
 const Title = styled.h2`
 	margin-bottom: ${pxToRem(24)};
+	color: var(--colour-white);
+	mix-blend-mode: difference;
+	position: relative;
+	z-index: 2;
 `;
 
 type Props = {
