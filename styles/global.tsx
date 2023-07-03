@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
 		--transition-speed-extra-slow: ${theme.transitionSpeed.extraSlow};
 		--transition-ease: cubic-bezier(0.65, 0, 0.35, 1);
 		--feature-wrapper-height: 30vh;
-		--highlight-colour: ${theme.colours.blue};
+		--highlight-colour: ${theme.colours.black};
 		--brightness: 1;
 	}
 
@@ -99,7 +99,7 @@ export const GlobalStyles = createGlobalStyle`
 	h1,
 	.type-h1 {
 		font-size: ${theme.size.h1};
-		line-height: ${pxToRem(72)};
+		line-height: ${pxToRem(59)};
 		letter-spacing: -0.02em;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}

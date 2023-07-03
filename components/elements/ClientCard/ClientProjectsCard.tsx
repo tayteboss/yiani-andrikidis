@@ -30,9 +30,11 @@ const Title = styled.a`
 	}
 `;
 
-const Role = styled.h4`
+const Details = styled.div`
 	margin-bottom: ${pxToRem(8)};
 `;
+
+const Span = styled.span``;
 
 const AwardRecWrapper = styled.div`
 	margin-bottom: ${pxToRem(8)};
@@ -59,6 +61,8 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 		awardsRecognition,
 		credits,
 		role,
+		year,
+		projectType,
 		link,
 		thumbnail
 	} = props;
@@ -80,9 +84,11 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 							{title}
 						</Title>
 					)}
-					{role && (
-						<Role>{role}</Role>
-					)}
+					<Details>
+						<Span className="type-h4">{year ? `${year} - ` : ``}</Span>
+						<Span className="type-h4">{projectType ? `${projectType} - ` : ``}</Span>
+						<Span className="type-h4">{role && role}</Span>
+					</Details>
 					{awardsRecognition && (
 						<AwardRecWrapper>
 							<RichText data={awardsRecognition} />

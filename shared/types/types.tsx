@@ -24,6 +24,8 @@ export type ClientProjectType = {
 	awardsRecognition: {};
 	credits: {};
 	role: string;
+	year?: string;
+	projectType?: string;
 	title: string;
 	link: string;
 	thumbnail?: {

@@ -27,7 +27,7 @@ const Page = (props: Props) => {
 	} = props;
 
 	useEffect(() => {
-		document.documentElement.style.setProperty('--highlight-colour', siteData?.highlightColour?.cssRgb);
+		// document.documentElement.style.setProperty('--highlight-colour', siteData?.highlightColour?.cssRgb);
 	}, [siteData]);
 
 	return (

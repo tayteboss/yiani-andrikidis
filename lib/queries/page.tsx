@@ -46,6 +46,8 @@ export const INDEX_PAGE_QUERY: string = `
 				}
 				link
 				role
+				year
+				projectType
 				title
 				thumbnail {
 					url

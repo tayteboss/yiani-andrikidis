@@ -47,7 +47,6 @@ const Clients = (props: Props) => {
 			/>
 			<ClientsList data={clientData} />
 			<MenuTrigger />
-			<Logo />
 		</PageWrapper>
 	);
 };

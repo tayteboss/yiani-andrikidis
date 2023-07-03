@@ -23,6 +23,8 @@ const ClientProjects = (props: Props) => {
 					awardsRecognition={item?.awardsRecognition}
 					credits={item?.credits}
 					role={item?.role}
+					year={item?.year}
+					projectType={item?.projectType}
 					link={item?.link}
 					thumbnail={item?.thumbnail}
 					key={i}

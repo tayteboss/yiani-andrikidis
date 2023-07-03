@@ -47,7 +47,6 @@ const Awards = (props: Props) => {
 				}}
 			/>
 			<AwardsList data={awardsData} />
-			<Logo />
 			<MenuTrigger />
 		</PageWrapper>
 	);

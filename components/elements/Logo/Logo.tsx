@@ -7,10 +7,12 @@ const LogoWrapper = styled.div`
 	display: flex;
 	position: fixed;
 	bottom: 0;
-	left: 0;
+	right: 0;
 	padding: ${pxToRem(32)} ${pxToRem(16)};
-	width: 100%;
-	background: var(--colour-white);;
+	width: 300px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 100px;
+	backdrop-filter: blur(5px);
 	color: var(--colour-white);
 	z-index: 5;
 `;
