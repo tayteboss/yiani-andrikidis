@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import HomeRichText from '../../common/HomeRichText';
-import pxToRem from '../../../utils/pxToRem';
 
-const StatementWrapper = styled.span``;
+const StatementWrapper = styled.div``;
 
 type Props = {
 	data: {

@@ -9,7 +9,8 @@ const MenuWrapper = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: calc(var(--vh) * 100);
+	height: 100dvh;
+	height: 100vh;
 	width: 100%;
 	background: var(--colour-blue);
 	padding: ${pxToRem(16)};

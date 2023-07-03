@@ -18,8 +18,8 @@ const StatementsWrapper = styled.div`
 
 	transition: filter var(--transition-speed-default) var(--transition-ease);
 
-	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-		padding-bottom: calc(var(--feature-wrapper-height) + 32px);
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding-bottom: calc(var(--feature-wrapper-height) + 80px);
 	}
 `;
 
@@ -43,9 +43,9 @@ const MoreButton = styled(motion.button)`
 		height: 4px;
 		background: var(--colour-blue);
 
-		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 			height: 3px;
-			bottom: 2px;
+			bottom: 1px;
 		}
 	}
 `;

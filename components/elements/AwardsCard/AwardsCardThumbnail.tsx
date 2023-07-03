@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import { useEffect, useRef } from 'react';
+import useViewportWidth from '../../../hooks/useViewportWidth';
 
 const AwardsCardThumbnailWrapper = styled.div`
 	margin-bottom: ${pxToRem(16)};
@@ -48,15 +49,17 @@ const AwardsCardThumbnail = (props: Props) => {
 
 	const videoRef = useRef<HTMLVideoElement>(null);
 
+	const viewport = useViewportWidth();
+
 	useEffect(() => {
 		if (!videoRef?.current) return;
 
-		if (isHovered) {
+		if (isHovered || viewport === 'mobile') {
 			videoRef.current.play();
 		} else {
 			videoRef.current.pause();
 		}
-	}, [isHovered]);
+	}, [isHovered, viewport]);
 
 	return (
 		<AwardsCardThumbnailWrapper>

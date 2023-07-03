@@ -15,6 +15,10 @@ const ClientProjectsCardWrapper = styled.div`
 
 const Inner = styled.div`
 	max-width: ${pxToRem(220)};
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		max-width: 100%;
+	}
 `;
 
 const Title = styled.a`

@@ -105,7 +105,7 @@ export const GlobalStyles = createGlobalStyle`
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
 			font-size: ${theme.sizeTablet.h1};
-			line-height: ${pxToRem(45)};
+			line-height: ${pxToRem(37)};
 		}
 
 		@media ${theme.mediaBreakpoints.mobile}

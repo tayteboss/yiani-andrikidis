@@ -17,6 +17,10 @@ const PageWrapper = styled.div`
 		position: fixed;
 		bottom: ${pxToRem(16)};
 		right: ${pxToRem(16)};
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			right: ${pxToRem(8)};
+		}
 	}
 `;
 

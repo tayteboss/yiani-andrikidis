@@ -24,6 +24,16 @@ const Layout = (props: Props) => {
 		setMenuIsOpen(false);
 	}, [router]);
 
+	useEffect(() => {
+		const html = document.querySelector('html');
+
+		if (menuIsOpen) {
+			html?.classList.add('no-scroll');
+		} else{
+			html?.classList.remove('no-scroll');
+		}
+	}, [menuIsOpen]);
+
 	return (
 		<MenuContext.Provider value={{ menuIsOpen, setMenuIsOpen }}>
 			<Main>{children}</Main>
