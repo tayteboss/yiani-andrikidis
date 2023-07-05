@@ -65,7 +65,6 @@ const VideoLightBox = (props: Props) => {
 						)}
 					>
 						<ReactPlayer
-							width="100%"
 							url={url}
 							controls={true}
 						/>

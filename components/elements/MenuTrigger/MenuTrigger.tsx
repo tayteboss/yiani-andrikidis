@@ -5,9 +5,13 @@ import { MenuContext } from '../../layout/Layout';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-const MenuTriggerWrapper = styled.div`
+type StyledProps = {
+	$isHomePage: boolean;
+};
+
+const MenuTriggerWrapper = styled.div<StyledProps>`
 	position: absolute;
-	bottom: calc(100% + 16px);
+	bottom: ${(props) => props.$isHomePage ? 'calc(100% + 32px)' : 'calc(100% + 16px)'};
 	right: ${pxToRem(16)};
 	background: rgba(255, 255, 255, 0.2);
 	border-radius: 100px;
@@ -78,8 +82,8 @@ const MenuTrigger = () => {
 
 	return (
 		<MenuTriggerWrapper
-			onClick={() => setMenuIsOpen(true)}
 			className="menu-trigger"
+			$isHomePage={router.pathname === '/'}
 		>
 			<LogoWrapper>
 				<Link href="/" passHref>
@@ -93,7 +97,7 @@ const MenuTrigger = () => {
 					</Indicator>
 				)}
 			</LogoWrapper>
-			<MenuTriggerButton>
+			<MenuTriggerButton onClick={() => setMenuIsOpen(true)}>
 				Menu
 			</MenuTriggerButton>
 		</MenuTriggerWrapper>

@@ -180,11 +180,6 @@ const Menu = (props: Props) => {
 										<LinkTag className="type-h1">Email</LinkTag>
 									</Link>
 								)}
-								{phone && (
-									<Link href={`tel: ${phone}`} passHref>
-										<LinkTag className="type-h1">Phone</LinkTag>
-									</Link>
-								)}
 								{cvLink && (
 									<Link href={cvLink} passHref>
 										<LinkTag className="type-h1" target="_blank">CV</LinkTag>

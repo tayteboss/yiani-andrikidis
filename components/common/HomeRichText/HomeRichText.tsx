@@ -31,6 +31,10 @@ const Span = styled.span`
 const BlankSpan = styled.span<StyledProps>`
 	white-space: pre;
 	width: ${(props) => props.$randInt ? props.$randInt : 0}vw;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		width: 0;
+	}
 `;
 
 const SpecialSpan = styled(motion.span)<StyledProps>`
@@ -130,10 +134,18 @@ const HomeRichText = (props: Props) => {
 								return (
 
 									words.map((word, wordIndex) => (
-										<Word key={wordIndex} className="type-h1">
+										<Word
+											key={wordIndex}
+											className="type-h1"
+										>
 											{word.map((letter: string, letterIndex: number) => (
 												letter === " " ? (
-													<SpecialSpace key={letterIndex} className="type-h1">{" "}</SpecialSpace>
+													<SpecialSpace
+														key={letterIndex}
+														className="type-h1"
+													>
+														{" "}
+													</SpecialSpace>
 												) : (
 													<SpecialSpan
 														className="type-h1"

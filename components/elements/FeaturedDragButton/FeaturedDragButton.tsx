@@ -20,7 +20,11 @@ const FeaturedDragButtonWrapper = styled.button<StyledProps>`
 	opacity: ${(props) => (!props.$isMini ? 1 : props.$isActive ? 1 : 0)};
 	color: var(--colour-white);
 
-	transition: all var(--transition-speed-default) var(--transition-ease);
+	transition: all var(--transition-speed-slow) var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		opacity: 1;
+	}
 
 	&:hover {
 		background: var(--colour-blue);

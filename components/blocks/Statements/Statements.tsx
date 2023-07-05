@@ -72,6 +72,10 @@ const Statements = (props: Props) => {
 		setDisplayedTexts(newDisplayedTexts);
 		setIndex((prevIndex) => (prevIndex + 1) % data.length);
 		setMoreO("o");
+
+		setTimeout(() => {
+			window.scrollTo(0, document.body.scrollHeight);
+		}, 100);
 	};
 
 	useEffect(() => {
