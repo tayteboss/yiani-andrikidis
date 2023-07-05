@@ -77,6 +77,7 @@ const FeaturedProjects = (props: Props) => {
 
 	const [isMini, setIsMini] = useState(true);
 	const [showFullVideo, setShowFullVideo] = useState({ isActive: false, url: "" });
+	const [isHovered, setIsHovered] = useState(false);
 
 	const hasData = data && data.length > 0;
 
@@ -122,7 +123,11 @@ const FeaturedProjects = (props: Props) => {
 
 	return (
 		<>
-			<FeaturedProjectsWrapper ref={containerRef}>
+			<FeaturedProjectsWrapper
+				ref={containerRef}
+				onMouseOver={() => setIsHovered(true)}
+				onMouseOut={() => setIsHovered(false)}
+			>
 				<Embla className="embla" ref={emblaRef}>
 					<EmblaContainer className="embla__container">
 						{hasData && data.map((item: FeaturedProjectType, i: number) => (
@@ -135,7 +140,11 @@ const FeaturedProjects = (props: Props) => {
 						))}
 					</EmblaContainer>
 				</Embla>
-				<FeaturedDragButton setIsMini={setIsMini} isMini={isMini} />
+				<FeaturedDragButton
+					setIsMini={setIsMini}
+					isMini={isMini}
+					isHovered={isHovered}
+				/>
 				<MenuTrigger />
 			</FeaturedProjectsWrapper>
 			<VideoLightBox
