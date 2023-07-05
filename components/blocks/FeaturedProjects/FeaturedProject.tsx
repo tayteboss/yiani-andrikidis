@@ -42,7 +42,7 @@ const Video = styled.video`
 	height: var(--feature-wrapper-height);
 	width: auto;
 
-	transition: all 400ms var(--transition-ease);
+	transition: all 800ms var(--transition-ease);
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		height: auto;

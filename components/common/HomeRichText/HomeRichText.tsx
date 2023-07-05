@@ -3,6 +3,12 @@ import { renderNodeRule, StructuredText } from 'react-datocms';
 import { isLink, isParagraph } from 'datocms-structured-text-utils';
 import randomIntFromInterval from '../../../utils/randomIntFromInterval';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+type StyledProps = {
+	$isSpace?: boolean;
+	$randInt?: number;
+};
 
 const Content = styled.div`
 	display: flex;
@@ -22,9 +28,10 @@ const Span = styled.span`
 	white-space: pre;
 `;
 
-type StyledProps = {
-	$isSpace?: boolean;
-};
+const BlankSpan = styled.span<StyledProps>`
+	white-space: pre;
+	width: ${(props) => props.$randInt ? props.$randInt : 0}vw;
+`;
 
 const SpecialSpan = styled(motion.span)<StyledProps>`
 	position: relative;
@@ -52,15 +59,17 @@ const Word = styled.div`
 type Props = {
 	className?: string;
 	data: any;
+	index: number;
 	color?: string;
 };
 
 const HomeRichText = (props: Props) => {
 	const {
-		className,
 		data,
-		color
+		index
 	} = props;
+
+	const [randInt, setrandInt] = useState(randomIntFromInterval(0, 70));
 
 	const groupStringToArray = (string: string): string[][] => {
 		const words = string.split(' '); // Split the string by spaces to get an array of words
@@ -81,8 +90,13 @@ const HomeRichText = (props: Props) => {
 		return result;
 	};
 
+	useEffect(() => {
+		setrandInt(randomIntFromInterval(0, 70));
+	}, []);
+
 	return (
 		<Content className="content">
+			<BlankSpan $randInt={randInt} />
 			<Span className="type-h1">Yiani Andrikidis </Span>
 			<StructuredText
 				data={data}

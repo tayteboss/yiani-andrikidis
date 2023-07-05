@@ -112,9 +112,18 @@ const FeaturedProjects = (props: Props) => {
 		if (isMini) {
 			return '30vh';
 		} else {
-			return viewportWidth === 'mobile' ? '80vh' : '70vh';
+			return viewportWidth === 'mobile' ? '75vh' : '70vh';
 		}
 	};
+
+	useEffect(() => {
+		document.documentElement.style.setProperty('--feature-wrapper-height', '0');
+		const timer = setTimeout(() => {
+			document.documentElement.style.setProperty('--feature-wrapper-height', setFeatureWrapperHeight());
+		}, 300);
+
+		return () => clearTimeout(timer);
+	}, []);
 
 	useEffect(() => {
 		document.documentElement.style.setProperty('--feature-wrapper-height', setFeatureWrapperHeight());

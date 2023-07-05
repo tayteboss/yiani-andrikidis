@@ -107,7 +107,7 @@ const Statements = (props: Props) => {
 		<StatementsWrapper>
 			<LayoutWrapper>
 				{displayedTexts.map((item: any, i: number) => (
-					<Statement data={item} key={i} />
+					<Statement data={item} key={i} index={index} />
 				))}
 				<Span> </Span>
 				<MoreButton 
