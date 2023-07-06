@@ -49,7 +49,13 @@ export const INDEX_PAGE_QUERY: string = `
 				year
 				projectType
 				title
-				thumbnail {
+				placeholderThumbnail {
+					url
+				}
+				videoSnippetMp4 {
+					url
+				}
+				videoSnippetWebm {
 					url
 				}
 			}

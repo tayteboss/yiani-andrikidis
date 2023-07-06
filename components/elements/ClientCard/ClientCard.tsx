@@ -13,26 +13,38 @@ const Title = styled.h2`
 	color: var(--colour-white);
 	mix-blend-mode: difference;
 	position: relative;
-	z-index: 2;
+	z-index: 1;
+
+	transition: all 150ms var(--transition-ease);
 `;
 
 type Props = {
 	client: string;
 	project: ClientProjectType[];
+	isHovered: boolean;
+	setIsHovered: (isHovered: boolean) => void;
 };
 
 const ClientCard = (props: Props) => {
 	const {
 		client,
-		project
+		project,
+		setIsHovered,
+		isHovered
 	} = props;
 
 	return (
 		<ClientCardWrapper>
 			{client && (
-				<Title>{client}</Title>
+				<Title className="client-card__title">
+					{client}
+				</Title>
 			)}
-			<ClientProjects data={project} />
+			<ClientProjects
+				data={project}
+				setIsHovered={setIsHovered}
+				isHovered={isHovered}
+			/>
 		</ClientCardWrapper>
 	);
 };

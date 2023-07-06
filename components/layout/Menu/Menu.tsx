@@ -151,8 +151,8 @@ const Menu = (props: Props) => {
 								<Link href="/" passHref>
 									<LinkTag className="type-h1">Home</LinkTag>
 								</Link>
-								<Link href="/clients" passHref>
-									<LinkTag className="type-h1">Clients</LinkTag>
+								<Link href="/work" passHref>
+									<LinkTag className="type-h1">Work</LinkTag>
 								</Link>
 								<Link href="/awards" passHref>
 									<LinkTag className="type-h1">Awards</LinkTag>

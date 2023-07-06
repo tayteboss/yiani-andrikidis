@@ -28,9 +28,17 @@ export type ClientProjectType = {
 	projectType?: string;
 	title: string;
 	link: string;
-	thumbnail?: {
+	placeholderThumbnail: {
 		url: string;
-	}
+	};
+	videoSnippetMp4: {
+		url: string;
+	};
+	videoSnippetWebm: {
+		url: string;
+	};
+	isHovered: boolean;
+	setIsHovered: (isHovered: boolean) => void;
 };
 
 export type AwardsType = {

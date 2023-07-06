@@ -6,11 +6,15 @@ const ClientProjectsWrapper = styled.div``;
 
 type Props = {
 	data: ClientProjectType[];
+	isHovered: boolean;
+	setIsHovered: (isHovered: boolean) => void;
 };
 
 const ClientProjects = (props: Props) => {
 	const {
-		data
+		data,
+		setIsHovered,
+		isHovered
 	} = props;
 
 	const hasData = data.length > 0;
@@ -26,7 +30,11 @@ const ClientProjects = (props: Props) => {
 					year={item?.year}
 					projectType={item?.projectType}
 					link={item?.link}
-					thumbnail={item?.thumbnail}
+					placeholderThumbnail={item?.placeholderThumbnail}
+					videoSnippetMp4={item?.videoSnippetMp4}
+					videoSnippetWebm={item?.videoSnippetWebm}
+					isHovered={isHovered}
+					setIsHovered={setIsHovered}
 					key={i}
 				/>
 			))}

@@ -28,7 +28,7 @@ type Props = {
 	clientData: ClientType[]
 };
 
-const Clients = (props: Props) => {
+const Work = (props: Props) => {
 	const {
 		siteData,
 		clientData,
@@ -37,7 +37,7 @@ const Clients = (props: Props) => {
 	return (
 		<PageWrapper>
 			<NextSeo
-				title={`Clients - ${siteData?.seoTitle}` || 'Yiani Andrikidis'}
+				title={`Work - ${siteData?.seoTitle}` || 'Yiani Andrikidis'}
 				description={siteData?.seoDescription || 'Yiani Andrikidis'}
 				openGraph={{
 					images: [
@@ -69,4 +69,4 @@ export async function getStaticProps() {
 	};
 }
 
-export default Clients;
+export default Work;

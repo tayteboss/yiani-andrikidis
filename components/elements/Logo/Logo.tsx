@@ -36,8 +36,8 @@ const Logo = () => {
 		if (router.pathname === '/') {
 			return 'Home';
 		}
-		if (router.pathname === '/clients') {
-			return 'Clients';
+		if (router.pathname === '/work') {
+			return 'Work';
 		}
 		if (router.pathname === '/awards') {
 			return 'Awards';

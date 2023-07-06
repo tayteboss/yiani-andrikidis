@@ -4,9 +4,24 @@ import RichText from '../../common/RichText';
 import pxToRem from '../../../utils/pxToRem';
 import { useState } from 'react';
 
-const ClientProjectsCardWrapper = styled.div`
+type StyledProps = {
+	$isHovered: boolean;
+};
+
+const ClientProjectsCardWrapper = styled.div<StyledProps>`
 	position: relative;
 	z-index: 2;
+
+	transition: all 150ms var(--transition-ease);
+
+	&:hover {
+		z-index: 10;
+
+		&.client-card__project-details {
+			opacity: 1;
+			filter: blur(0);
+		}
+	}
 
 	&:not(:last-child) {
 		margin-bottom: ${pxToRem(24)};
@@ -44,20 +59,17 @@ const AwardRecWrapper = styled.div`
 	margin-bottom: ${pxToRem(8)};
 `;
 
-const ImageWrapper = styled.div`
+const VideoComponentWrapper = styled.div`
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 30%;
-	height: auto;
-	z-index: 1;
+	z-index: 5;
+	overflow: hidden;
+	background: red;
 `;
 
-const Img = styled.img`
-	height: 100%;
-	width: 100%;
-`;
+const Video = styled.video``;
 
 const ClientProjectsCard = (props: ClientProjectType) => {
 	const {
@@ -68,14 +80,38 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 		year,
 		projectType,
 		link,
-		thumbnail
+		placeholderThumbnail,
+		videoSnippetMp4,
+		videoSnippetWebm,
+		isHovered,
+		setIsHovered
 	} = props;
 
-	const [isHovered, setIsHovered] = useState(false);
+	const [isHoveredCard, setIsHoveredCard] = useState(false);
 
 	return (
 		<>
-			<ClientProjectsCardWrapper>
+			{(videoSnippetMp4 && isHovered && isHoveredCard) && (
+				<VideoComponentWrapper className="video-component-wrapper">
+					<Video
+						autoPlay
+						muted
+						playsInline
+						loop
+						preload="auto"
+						poster={placeholderThumbnail?.url}
+					>
+						<source src={videoSnippetMp4?.url} type="video/mp4" />
+						<source src={videoSnippetWebm?.url} type="video/webm" />
+					</Video>
+				</VideoComponentWrapper>
+			)}
+			<ClientProjectsCardWrapper
+				className="client-card__project-details"
+				$isHovered={isHovered}
+				onMouseOver={() => setIsHoveredCard(true)}
+				onMouseOut={() => setIsHoveredCard(false)}
+			>
 				<Inner>
 					{title && (
 						<Title
@@ -103,11 +139,6 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 					)}
 				</Inner>
 			</ClientProjectsCardWrapper>
-			{(thumbnail && isHovered) && (
-				<ImageWrapper>
-					<Img src={thumbnail.url} />
-				</ImageWrapper>
-			)}
 		</>
 	);
 };
