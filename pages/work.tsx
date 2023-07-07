@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import { getIndexPage, getSiteData } from '../lib/datocms';
+import { getFilteredWorkProjects, getIndexPage, getSiteData } from '../lib/datocms';
 import { NextSeo } from 'next-seo';
 import { ClientType, SiteData } from '../shared/types/types';
 import ClientsList from '../components/blocks/ClientsList';
 import MenuTrigger from '../components/elements/MenuTrigger';
 import pxToRem from '../utils/pxToRem';
 import sortClientDataAlphabetically from '../utils/sortClientDataAlphabetically';
-import Logo from '../components/elements/Logo';
+import FilterWidget from '../components/elements/FilterWidget';
+import { useEffect, useState } from 'react';
 
 const PageWrapper = styled.div`
 	min-height: calc(var(--vh) * 100);
@@ -34,6 +35,22 @@ const Work = (props: Props) => {
 		clientData,
 	} = props;
 
+	const [activeFilter, setActiveFilter] = useState('none');
+	const [filteredData, setFilteredData] = useState(false);
+
+	const fetchData = async (filter: string) => {
+		if (filter !== 'none') {
+			const data = await getFilteredWorkProjects(filter);
+			setFilteredData(data);
+		} else {
+			setFilteredData(false);
+		}
+	};
+
+	useEffect(() => {
+		fetchData(activeFilter);
+	}, [activeFilter]);
+
 	return (
 		<PageWrapper>
 			<NextSeo
@@ -49,8 +66,15 @@ const Work = (props: Props) => {
 					],
 				}}
 			/>
-			<ClientsList data={clientData} />
+			<ClientsList
+				data={clientData}
+				filteredData={filteredData}
+			/>
 			<MenuTrigger />
+			<FilterWidget
+				activeFilter={activeFilter}
+				setActiveFilter={setActiveFilter}
+			/>
 		</PageWrapper>
 	);
 };

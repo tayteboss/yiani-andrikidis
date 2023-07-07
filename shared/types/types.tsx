@@ -17,6 +17,7 @@ export type FeaturedProjectType = {
 
 export type ClientType = {
 	client: string;
+	projectType: string;
 	project: [];
 };
 

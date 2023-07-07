@@ -37,6 +37,7 @@ export const INDEX_PAGE_QUERY: string = `
 	query Query {
 		allIndexProjects(first: 100) {
 			client
+			projectType
 			project {
 				awardsRecognition {
 					${richTextFragment}
@@ -47,7 +48,36 @@ export const INDEX_PAGE_QUERY: string = `
 				link
 				role
 				year
-				projectType
+				title
+				placeholderThumbnail {
+					url
+				}
+				videoSnippetMp4 {
+					url
+				}
+				videoSnippetWebm {
+					url
+				}
+			}
+		}
+	}
+`;
+
+export const INDEX_PAGE_FILTER_QUERY: string = `
+	query Query($filter: String) {
+		allIndexProjects(filter: {projectType: {eq: $filter}}, first: 100) {
+			client
+			projectType
+			project {
+				awardsRecognition {
+					${richTextFragment}
+				}
+				credits {
+					${richTextFragment}
+				}
+				link
+				role
+				year
 				title
 				placeholderThumbnail {
 					url

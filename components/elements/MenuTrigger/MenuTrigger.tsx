@@ -13,9 +13,10 @@ const MenuTriggerWrapper = styled.div<StyledProps>`
 	position: absolute;
 	bottom: ${(props) => props.$isHomePage ? 'calc(100% + 32px)' : 'calc(100% + 16px)'};
 	right: ${pxToRem(16)};
-	background: rgba(255, 255, 255, 0.2);
-	border-radius: 100px;
+	background: rgba(242, 242, 244, 0.5);
+	border: 1px solid var(--colour-black200);
 	backdrop-filter: blur(5px);
+	border-radius: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -32,7 +33,6 @@ const MenuTriggerButton = styled.button`
 	background: var(--colour-blue);
 	color: var(--colour-white);
 	z-index: 10;
-	margin: ${pxToRem(4)};
 
 	transition: all var(--transition-speed-default) var(--transition-ease);
 
@@ -85,18 +85,20 @@ const MenuTrigger = () => {
 			className="menu-trigger"
 			$isHomePage={router.pathname === '/'}
 		>
-			<LogoWrapper>
-				<Link href="/" passHref>
-					<LogoTag className="type-h4">
-						Yiani Andrikidis
-					</LogoTag>
-				</Link>
-				{getPageTitle() !== 'Home' && (
-					<Indicator className="type-h4">
-						{" "}// {getPageTitle()}
-					</Indicator>
-				)}
-			</LogoWrapper>
+			{router.pathname !== '/work' && (
+				<LogoWrapper>
+					<Link href="/" passHref>
+						<LogoTag className="type-h4">
+							Yiani Andrikidis
+						</LogoTag>
+					</Link>
+					{getPageTitle() !== 'Home' && (
+						<Indicator className="type-h4">
+							{" "}// {getPageTitle()}
+						</Indicator>
+					)}
+				</LogoWrapper>
+			)}
 			<MenuTriggerButton onClick={() => setMenuIsOpen(true)}>
 				Menu
 			</MenuTriggerButton>

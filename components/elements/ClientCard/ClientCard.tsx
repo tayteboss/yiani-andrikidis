@@ -20,6 +20,7 @@ const Title = styled.h2`
 
 type Props = {
 	client: string;
+	projectType: string;
 	project: ClientProjectType[];
 	isHovered: boolean;
 	setIsHovered: (isHovered: boolean) => void;
@@ -29,6 +30,7 @@ const ClientCard = (props: Props) => {
 	const {
 		client,
 		project,
+		projectType,
 		setIsHovered,
 		isHovered
 	} = props;
@@ -42,6 +44,7 @@ const ClientCard = (props: Props) => {
 			)}
 			<ClientProjects
 				data={project}
+				projectType={projectType}
 				setIsHovered={setIsHovered}
 				isHovered={isHovered}
 			/>

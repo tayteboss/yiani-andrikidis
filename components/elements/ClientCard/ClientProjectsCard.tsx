@@ -89,6 +89,8 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 
 	const [isHoveredCard, setIsHoveredCard] = useState(false);
 
+	const capitalise = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
 	return (
 		<>
 			{(videoSnippetMp4 && isHovered && isHoveredCard) && (
@@ -118,7 +120,7 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 							href={link}
 							target="_blank"
 							className="type-h3"
-							onMouseOver={() => setIsHovered(true)}
+							onMouseOver={() => setIsHovered(videoSnippetMp4?.url ? true : false)}
 							onMouseOut={() => setIsHovered(false)}
 						>
 							{title}
@@ -126,7 +128,7 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 					)}
 					<Details>
 						<Span className="type-h4">{year ? `${year} - ` : ``}</Span>
-						<Span className="type-h4">{projectType ? `${projectType} - ` : ``}</Span>
+						<Span className="type-h4">{projectType ? `${capitalise(projectType)} - ` : ``}</Span>
 						<Span className="type-h4">{role && role}</Span>
 					</Details>
 					{awardsRecognition && (

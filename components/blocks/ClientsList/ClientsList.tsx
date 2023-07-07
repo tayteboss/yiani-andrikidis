@@ -16,39 +16,55 @@ const ClientsListWrapper = styled.div<StyledProps>`
 	.client-card {
 		&__title,
 		&__project-details {
-			opacity: ${({ $isHovered }) => $isHovered ? 0.5 : 1};
-			filter: ${({ $isHovered }) => $isHovered ? 'blur(2px)' : 'blur(0)'};
+			opacity: ${({ $isHovered }) => $isHovered ? 0.2 : 1};
 		}
 	}
 `;
 
 const ClientsList = (props: any) => {
 	const {
-		data
+		data,
+		filteredData
 	} = props;
 
-	const hasData = data.length > 0;
+	const hasData = data?.length > 0 || filteredData?.length > 0;
 
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
 		<ClientsListWrapper $isHovered={isHovered}>
 			<LayoutWrapper>
-				<ResponsiveMasonry
-					columnsCountBreakPoints={{350: 1, 500: 2, 900: 3, 1200: 4, 1800: 5}}
-				>
-					<Masonry gutter="16px">
-						{hasData && data.map((item: ClientType, i: number) => (
-							<ClientCard
-								client={item?.client}
-								project={item.project}
-								key={i}
-								setIsHovered={setIsHovered}
-								isHovered={isHovered}
-							/>
-						))}
-					</Masonry>
-				</ResponsiveMasonry>
+				{hasData && (
+					<ResponsiveMasonry
+						columnsCountBreakPoints={{350: 1, 500: 2, 900: 3, 1200: 4, 1800: 5}}
+					>
+						<Masonry gutter="16px">
+							{filteredData ? (
+								filteredData.map((item: ClientType, i: number) => (
+									<ClientCard
+										client={item?.client}
+										projectType={item?.projectType}
+										project={item.project}
+										key={i}
+										setIsHovered={setIsHovered}
+										isHovered={isHovered}
+									/>
+								))
+							) : (
+								data.map((item: ClientType, i: number) => (
+									<ClientCard
+										client={item?.client}
+										projectType={item?.projectType}
+										project={item.project}
+										key={i}
+										setIsHovered={setIsHovered}
+										isHovered={isHovered}
+									/>
+								))
+							)}
+						</Masonry>
+					</ResponsiveMasonry>
+				)}
 			</LayoutWrapper>
 		</ClientsListWrapper>
 	);

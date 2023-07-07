@@ -6,6 +6,7 @@ const ClientProjectsWrapper = styled.div``;
 
 type Props = {
 	data: ClientProjectType[];
+	projectType: string;
 	isHovered: boolean;
 	setIsHovered: (isHovered: boolean) => void;
 };
@@ -13,6 +14,7 @@ type Props = {
 const ClientProjects = (props: Props) => {
 	const {
 		data,
+		projectType,
 		setIsHovered,
 		isHovered
 	} = props;
@@ -28,7 +30,7 @@ const ClientProjects = (props: Props) => {
 					credits={item?.credits}
 					role={item?.role}
 					year={item?.year}
-					projectType={item?.projectType}
+					projectType={projectType}
 					link={item?.link}
 					placeholderThumbnail={item?.placeholderThumbnail}
 					videoSnippetMp4={item?.videoSnippetMp4}
