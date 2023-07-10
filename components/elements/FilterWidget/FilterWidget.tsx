@@ -20,7 +20,7 @@ const FilterWidgetWrapper = styled.div`
 	border-radius: 100px;
 	display: flex;
 	align-items: center;
-	z-index: 55;
+	z-index: 50;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		left: ${pxToRem(16)};
@@ -196,18 +196,18 @@ const FilterWidget = (props: Props) => {
 							<FilterTrigger
 								className="type-h4"
 								variants={childVariants}
-								onClick={() => setActiveFilter('commercial')}
-								$isActive={activeFilter === 'commercial'}
-							>
-								Commercial
-							</FilterTrigger>
-							<FilterTrigger
-								className="type-h4"
-								variants={childVariants}
 								onClick={() => setActiveFilter('music')}
 								$isActive={activeFilter === 'music'}
 							>
 								Music
+							</FilterTrigger>
+							<FilterTrigger
+								className="type-h4"
+								variants={childVariants}
+								onClick={() => setActiveFilter('commercial')}
+								$isActive={activeFilter === 'commercial'}
+							>
+								Commercial
 							</FilterTrigger>
 							<FilterTrigger
 								className="type-h4"

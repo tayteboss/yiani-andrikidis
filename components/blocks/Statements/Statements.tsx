@@ -16,7 +16,7 @@ const StatementsWrapper = styled.div`
 	filter: brightness(var(--brightness));
 	min-height: 100vh;
 
-	transition: filter var(--transition-speed-default) var(--transition-ease);
+	transition: filter 800ms var(--transition-ease);
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding-bottom: calc(var(--feature-wrapper-height) + 80px);

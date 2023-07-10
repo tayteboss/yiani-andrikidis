@@ -10,8 +10,7 @@ const ClientCardWrapper = styled.div`
 
 const Title = styled.h2`
 	margin-bottom: ${pxToRem(24)};
-	color: var(--colour-white);
-	mix-blend-mode: difference;
+	color: var(--colour-black);
 	position: relative;
 	z-index: 1;
 

@@ -95,7 +95,7 @@ const HomeRichText = (props: Props) => {
 	};
 
 	useEffect(() => {
-		setrandInt(randomIntFromInterval(0, 70));
+		setrandInt(randomIntFromInterval(0, 60));
 	}, []);
 
 	return (

@@ -104,7 +104,7 @@ const FeaturedProjects = (props: Props) => {
 		if (isMini) {
 			return '1';
 		} else {
-			return '0.3';
+			return '0.2';
 		}
 	};
 
@@ -112,7 +112,7 @@ const FeaturedProjects = (props: Props) => {
 		if (isMini) {
 			return '30vh';
 		} else {
-			return viewportWidth === 'mobile' ? '75vh' : '70vh';
+			return viewportWidth === 'mobile' ? '75vh' : '50vh';
 		}
 	};
 
@@ -134,10 +134,13 @@ const FeaturedProjects = (props: Props) => {
 		<>
 			<FeaturedProjectsWrapper
 				ref={containerRef}
-				onMouseOver={() => setIsHovered(true)}
-				onMouseOut={() => setIsHovered(false)}
 			>
-				<Embla className="embla" ref={emblaRef}>
+				<Embla
+					className="embla featured-projects"
+					ref={emblaRef}
+					onMouseOver={() => setIsMini(false)}
+					onMouseOut={() => setIsMini(true)}
+				>
 					<EmblaContainer className="embla__container">
 						{hasData && data.map((item: FeaturedProjectType, i: number) => (
 							<EmblaSlide className="embla__slide" key={i}>
@@ -149,11 +152,11 @@ const FeaturedProjects = (props: Props) => {
 						))}
 					</EmblaContainer>
 				</Embla>
-				<FeaturedDragButton
+				{/* <FeaturedDragButton
 					setIsMini={setIsMini}
 					isMini={isMini}
 					isHovered={isHovered}
-				/>
+				/> */}
 				<MenuTrigger />
 			</FeaturedProjectsWrapper>
 			<VideoLightBox

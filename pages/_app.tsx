@@ -9,6 +9,7 @@ import { theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
 import { Transitions } from '../shared/types/types';
+import Cursor from '../components/elements/Cursor';
 
 const pageTransitionVariants: Transitions = {
 	hidden: { opacity: 0, transition: { duration: 0.3 } },
@@ -27,12 +28,14 @@ const App = (props: Props) => {
 	} = props;
 
 	const [hasVisited, setHasVisited] = useState<boolean>(false);
+	const [cursorRefresh, setCursorRefresh] = useState<number>(1);
 
 	const router= useRouter();
 	const routerEvents = router.events;
 
 	const handleExitComplete = (): void => {
 		window.scrollTo(0, 0);
+		setCursorRefresh(cursorRefresh + 1);
 	};
 
 	use1vh();
@@ -47,6 +50,8 @@ const App = (props: Props) => {
 		const timer = setTimeout(() => {
 			Cookies.set('visited', 'true', { expires: 1, path: '' });
 		}, 5000);
+
+		setCursorRefresh(cursorRefresh + 1);
 
 		return () => {
 			clearTimeout(timer);
@@ -69,6 +74,7 @@ const App = (props: Props) => {
 						/>
 					</AnimatePresence>
 				</Layout>
+				<Cursor cursorRefresh={cursorRefresh} />
 			</ThemeProvider>
 		</>
 	);

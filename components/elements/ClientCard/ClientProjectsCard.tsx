@@ -53,7 +53,9 @@ const Details = styled.div`
 	margin-bottom: ${pxToRem(8)};
 `;
 
-const Span = styled.span``;
+const Span = styled.span`
+	color: var(--colour-black);
+`;
 
 const AwardRecWrapper = styled.div`
 	margin-bottom: ${pxToRem(8)};
@@ -66,7 +68,6 @@ const VideoComponentWrapper = styled.div`
 	transform: translate(-50%, -50%);
 	z-index: 5;
 	overflow: hidden;
-	background: red;
 `;
 
 const Video = styled.video``;
