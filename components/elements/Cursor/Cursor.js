@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useMousePosition } from '../../../hooks/useMousePosition';
+import pxToRem from '../../../utils/pxToRem';
 
 const CursorWrapper = styled.div`
 	z-index: 1000;
@@ -21,7 +22,7 @@ const CursorWrapper = styled.div`
 
 const CursorText = styled(motion.div)`
 	color: var(--colour-white);
-	font-size: 1.5rem;
+	font-size: ${pxToRem(14)};
 	position: fixed;
 	top: -25px;
 	left: -15px;
