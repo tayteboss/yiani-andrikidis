@@ -5,6 +5,7 @@ import pxToRem from '../../../utils/pxToRem';
 
 const VideoComponentWrapper = styled.div`
 	position: relative;
+	pointer-events: none;
 `;
 
 const Video = styled.video`

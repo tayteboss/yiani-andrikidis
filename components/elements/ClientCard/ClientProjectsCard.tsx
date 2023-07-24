@@ -68,6 +68,7 @@ const VideoComponentWrapper = styled.div`
 	transform: translate(-50%, -50%);
 	z-index: 5;
 	overflow: hidden;
+	pointer-events: none;
 `;
 
 const Video = styled.video``;
