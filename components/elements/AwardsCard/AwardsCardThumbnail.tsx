@@ -73,8 +73,8 @@ const AwardsCardThumbnail = (props: Props) => {
 					preload="auto"
 					poster={placeholderThumbnail?.url}
 				>
-					<source src={videoSnippetMp4.url} type="video/mp4" />
-					<source src={videoSnippetWebm.url} type="video/webm" />
+					<source src={videoSnippetMp4?.url} type="video/mp4" />
+					<source src={videoSnippetWebm?.url} type="video/webm" />
 				</Video>
 			) : (
 				<Img src={placeholderThumbnail?.url} />
