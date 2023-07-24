@@ -48,10 +48,11 @@ const SpecialSpace = styled.span`
 
 const Link = styled(motion.a)`
 	color: var(--colour-black);
+	text-decoration: underline !important;
 
 	&:hover {
 		text-decoration: underline;
-		color: var(--colour-black);
+		color: var(--colour-blue);
 	}
 `;
 
