@@ -85,7 +85,7 @@ const FeaturedProjects = (props: Props) => {
 
 	const [emblaRef, emblaApi] = useEmblaCarousel(
 		{
-			loop: true,
+			loop: false,
 			align: 0,
 			dragFree: true,
 			axis: viewportWidth === 'mobile' ? 'y' : 'x',
@@ -152,11 +152,6 @@ const FeaturedProjects = (props: Props) => {
 						))}
 					</EmblaContainer>
 				</Embla>
-				{/* <FeaturedDragButton
-					setIsMini={setIsMini}
-					isMini={isMini}
-					isHovered={isHovered}
-				/> */}
 				<MenuTrigger />
 			</FeaturedProjectsWrapper>
 			<VideoLightBox

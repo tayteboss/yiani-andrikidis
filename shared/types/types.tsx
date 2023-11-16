@@ -6,6 +6,9 @@ export type FeaturedProjectType = {
 	};
 	snippetVideoMp4: {
 		url: string;
+		video: {
+			muxPlaybackId: string;
+		}
 	};
 	snippetVideoWebm: {
 		url: string;
@@ -34,6 +37,9 @@ export type ClientProjectType = {
 	};
 	videoSnippetMp4: {
 		url: string;
+		video: {
+			muxPlaybackId: string;
+		}
 	};
 	videoSnippetWebm: {
 		url: string;
@@ -53,6 +59,9 @@ export type AwardsType = {
 	link: string;
 	videoSnippetMp4: {
 		url: string;
+		video: {
+			muxPlaybackId: string;
+		}
 	}
 	videoSnippetWebm: {
 		url: string;

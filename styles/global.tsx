@@ -24,6 +24,16 @@ export const GlobalStyles = createGlobalStyle`
 		--brightness: 1;
 	}
 
+	mux-player {
+		--media-object-fit: contain;
+		--media-object-position: center;
+		--controls: none;
+		--media-object-fit: cover;
+		--media-object-position: center;
+		object-fit: cover;
+		aspect-ratio: 16 / 9;
+	}
+
 	* {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;

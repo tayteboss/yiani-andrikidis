@@ -21,6 +21,9 @@ export const FEATURED_PROJECTS_QUERY: string = `
 			role
 			snippetVideoMp4 {
 				url
+				video {
+					muxPlaybackId
+				}
 			}
 			snippetVideoWebm {
 				url
@@ -54,6 +57,9 @@ export const INDEX_PAGE_QUERY: string = `
 				}
 				videoSnippetMp4 {
 					url
+					video {
+						muxPlaybackId
+					}
 				}
 				videoSnippetWebm {
 					url
@@ -84,6 +90,9 @@ export const INDEX_PAGE_FILTER_QUERY: string = `
 				}
 				videoSnippetMp4 {
 					url
+					video {
+						muxPlaybackId
+					}
 				}
 				videoSnippetWebm {
 					url
@@ -109,6 +118,9 @@ export const AWARD_PAGE_QUERY: string = `
 			title
 			videoSnippetMp4 {
 				url
+				video {
+					muxPlaybackId
+				}
 			}
 			videoSnippetWebm {
 				url

@@ -26,10 +26,6 @@ const Page = (props: Props) => {
 		featuredProjects
 	} = props;
 
-	useEffect(() => {
-		// document.documentElement.style.setProperty('--highlight-colour', siteData?.highlightColour?.cssRgb);
-	}, [siteData]);
-
 	return (
 		<PageWrapper>
 			<NextSeo

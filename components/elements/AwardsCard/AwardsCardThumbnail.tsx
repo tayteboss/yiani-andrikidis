@@ -2,23 +2,15 @@ import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import { useEffect, useRef } from 'react';
 import useViewportWidth from '../../../hooks/useViewportWidth';
+import MuxPlayer from '@mux/mux-player-react';
 
 const AwardsCardThumbnailWrapper = styled.div`
 	margin-bottom: ${pxToRem(16)};
 	width: 100%;
-	padding-top: 56.25%;
 	position: relative;
 `;
 
 const Img = styled.img`
-	object-fit: cover;
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	inset: 0;
-`;
-
-const Video = styled.video`
 	object-fit: cover;
 	height: 100%;
 	width: 100%;
@@ -32,6 +24,9 @@ type Props = {
 	},
 	videoSnippetMp4: {
 		url: string
+		video: {
+			muxPlaybackId: string
+		}
 	},
 	videoSnippetWebm: {
 		url: string
@@ -64,18 +59,16 @@ const AwardsCardThumbnail = (props: Props) => {
 	return (
 		<AwardsCardThumbnailWrapper>
 			{videoSnippetMp4 ? (
-				<Video
-					autoPlay={false}
-					muted
-					playsInline
-					loop
-					ref={videoRef}
+				<MuxPlayer
+					streamType="on-demand"
+					playbackId={videoSnippetMp4.video.muxPlaybackId}
+					autoPlay="muted"
+					loop={true}
+					thumbnailTime={0}
 					preload="auto"
-					poster={placeholderThumbnail?.url}
-				>
-					<source src={videoSnippetMp4?.url} type="video/mp4" />
-					<source src={videoSnippetWebm?.url} type="video/webm" />
-				</Video>
+					muted
+					playsInline={true}
+				/>
 			) : (
 				<Img src={placeholderThumbnail?.url} />
 			)}

@@ -3,6 +3,7 @@ import { ClientProjectType } from '../../../shared/types/types';
 import RichText from '../../common/RichText';
 import pxToRem from '../../../utils/pxToRem';
 import { useState } from 'react';
+import MuxPlayer from '@mux/mux-player-react';
 
 type StyledProps = {
 	$isHovered: boolean;
@@ -69,6 +70,12 @@ const VideoComponentWrapper = styled.div`
 	z-index: 5;
 	overflow: hidden;
 	pointer-events: none;
+	width: 40%;
+
+	mux-player {
+		height: auto;
+		width: 100%;
+	}
 `;
 
 const Video = styled.video``;
@@ -97,17 +104,16 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 		<>
 			{(videoSnippetMp4 && isHovered && isHoveredCard) && (
 				<VideoComponentWrapper className="video-component-wrapper">
-					<Video
-						autoPlay
-						muted
-						playsInline
-						loop
+					<MuxPlayer
+						streamType="on-demand"
+						playbackId={videoSnippetMp4.video.muxPlaybackId}
+						autoPlay="muted"
+						loop={true}
+						thumbnailTime={0}
 						preload="auto"
-						poster={placeholderThumbnail?.url}
-					>
-						<source src={videoSnippetMp4?.url} type="video/mp4" />
-						<source src={videoSnippetWebm?.url} type="video/webm" />
-					</Video>
+						muted
+						playsInline={true}
+					/>
 				</VideoComponentWrapper>
 			)}
 			<ClientProjectsCardWrapper

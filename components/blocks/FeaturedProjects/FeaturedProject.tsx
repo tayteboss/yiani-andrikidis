@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { FeaturedProjectType } from '../../../shared/types/types';
 import { useRef } from 'react';
 import pxToRem from '../../../utils/pxToRem';
+import MuxPlayer from '@mux/mux-player-react';
 
 const FeaturedProjectWrapper = styled.div`
 	position: relative;
@@ -34,6 +35,19 @@ const VideoComponentWrapper = styled.div`
 		bottom: 0;
 		height: 100%;
 		width: 100%;
+	}
+
+	mux-player {
+		object-fit: cover;
+		height: var(--feature-wrapper-height);
+		width: auto;
+
+		transition: all 800ms var(--transition-ease);
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			height: auto;
+			width: 100%;
+		}
 	}
 `;
 
@@ -126,19 +140,17 @@ const FeaturedProject = (props: Props) => {
 					</FullVideoTrigger>
 				)}
 				<VideoComponentWrapper className="video-component-wrapper">
-					{snippetVideoMp4?.url && (
-						<Video
-							autoPlay
-							muted
-							playsInline
-							loop
-							ref={videoRef}
+					{snippetVideoMp4.video.muxPlaybackId && (
+						<MuxPlayer
+							streamType="on-demand"
+							playbackId={snippetVideoMp4.video.muxPlaybackId}
+							autoPlay="muted"
+							loop={true}
+							thumbnailTime={0}
 							preload="auto"
-							poster={placeholderImage?.url}
-						>
-							<source src={snippetVideoMp4?.url} type="video/mp4" />
-							<source src={snippetVideoWebm?.url} type="video/webm" />
-						</Video>
+							muted
+							playsInline={true}
+						/>
 					)}
 				</VideoComponentWrapper>
 			</FeaturedProjectWrapper>
