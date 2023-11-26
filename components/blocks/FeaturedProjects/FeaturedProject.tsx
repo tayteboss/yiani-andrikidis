@@ -140,7 +140,7 @@ const FeaturedProject = (props: Props) => {
 					</FullVideoTrigger>
 				)}
 				<VideoComponentWrapper className="video-component-wrapper">
-					{snippetVideoMp4.video.muxPlaybackId && (
+					{snippetVideoMp4?.video?.muxPlaybackId && (
 						<MuxPlayer
 							streamType="on-demand"
 							playbackId={snippetVideoMp4.video.muxPlaybackId}
