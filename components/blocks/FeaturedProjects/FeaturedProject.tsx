@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { FeaturedProjectType } from '../../../shared/types/types';
-import { useRef } from 'react';
 import pxToRem from '../../../utils/pxToRem';
 import MuxPlayer from '@mux/mux-player-react';
+import { useInView } from 'react-intersection-observer';
 
 const FeaturedProjectWrapper = styled.div`
 	position: relative;
@@ -104,10 +104,7 @@ type Props = {
 };
 
 const FeaturedProject = (props: Props) => {
-	const {
-		data,
-		setShowFullVideo
-	} = props;
+	const { data, setShowFullVideo } = props;
 
 	const {
 		role,
@@ -115,25 +112,28 @@ const FeaturedProject = (props: Props) => {
 		placeholderImage,
 		snippetVideoMp4,
 		snippetVideoWebm,
-		vimeoLink,
+		vimeoLink
 	} = data;
 
-	const videoRef = useRef<HTMLVideoElement>(null);
+	const { ref, inView } = useInView({
+		triggerOnce: false,
+		threshold: 0.2,
+		rootMargin: '-50px'
+	});
 
 	return (
 		<>
-			<FeaturedProjectWrapper>
-				{title && (
-					<Title className="feature__title">{title}</Title>
-				)}
-				{role && (
-					<Role className="feature__role">{role}</Role>
-				)}
+			<FeaturedProjectWrapper ref={ref}>
+				{title && <Title className="feature__title">{title}</Title>}
+				{role && <Role className="feature__role">{role}</Role>}
 				{vimeoLink?.url && (
 					<FullVideoTrigger
-						onClick={() => setShowFullVideo(
-							{ isActive: true, url: vimeoLink.url }
-						)}
+						onClick={() =>
+							setShowFullVideo({
+								isActive: true,
+								url: vimeoLink.url
+							})
+						}
 						className="feature__link"
 					>
 						Full video
@@ -150,6 +150,7 @@ const FeaturedProject = (props: Props) => {
 							preload="auto"
 							muted
 							playsInline={true}
+							paused={!inView}
 						/>
 					)}
 				</VideoComponentWrapper>
