@@ -22,8 +22,6 @@ type Props = {
 const Page = (props: Props) => {
 	const { homeData, siteData, featuredProjects } = props;
 
-	console.log('featuredProjects', featuredProjects);
-
 	return (
 		<PageWrapper>
 			<NextSeo
