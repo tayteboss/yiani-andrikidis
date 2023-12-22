@@ -3,6 +3,7 @@ import { FeaturedProjectType } from '../../../shared/types/types';
 import pxToRem from '../../../utils/pxToRem';
 import MuxPlayer from '@mux/mux-player-react';
 import { useInView } from 'react-intersection-observer';
+import { useEffect, useRef, useState } from 'react';
 
 const FeaturedProjectWrapper = styled.div`
 	position: relative;
@@ -48,6 +49,19 @@ const VideoComponentWrapper = styled.div`
 			height: auto;
 			width: 100%;
 		}
+	}
+`;
+
+const Img = styled.img`
+	object-fit: cover;
+	height: var(--feature-wrapper-height);
+	width: auto;
+
+	transition: all 800ms var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		height: auto;
+		width: 100%;
 	}
 `;
 
@@ -115,6 +129,20 @@ const FeaturedProject = (props: Props) => {
 		vimeoLink
 	} = data;
 
+	const [isPlaying, setIsPlaying] = useState(false);
+
+	const ref2 = useRef<HTMLVideoElement>(null);
+
+	useEffect(() => {
+		if (!ref2.current) return;
+
+		if (isPlaying) {
+			ref2.current.play();
+		} else {
+			ref2.current.pause();
+		}
+	}, [ref2, isPlaying]);
+
 	const { ref, inView } = useInView({
 		triggerOnce: false,
 		threshold: 0.2,
@@ -140,7 +168,30 @@ const FeaturedProject = (props: Props) => {
 					</FullVideoTrigger>
 				)}
 				<VideoComponentWrapper className="video-component-wrapper">
-					{snippetVideoMp4?.video?.muxPlaybackId && (
+					{snippetVideoMp4?.url && (
+						<Video
+							ref={ref2}
+							autoPlay
+							muted
+							playsInline
+							loop
+							preload="auto"
+							onMouseOver={() => setIsPlaying(true)}
+							onMouseOut={() => setIsPlaying(false)}
+						>
+							<source
+								src={snippetVideoMp4.url}
+								type="video/mp4"
+							/>
+						</Video>
+					)}
+					{/* {snippetVideoMp4?.video?.muxPlaybackId && (
+						<Img
+							src={`https://image.mux.com/${snippetVideoMp4.video.muxPlaybackId}/animated.webp`}
+							loading="eager"
+						/>
+					)} */}
+					{/* {snippetVideoMp4?.video?.muxPlaybackId && (
 						<MuxPlayer
 							streamType="on-demand"
 							playbackId={snippetVideoMp4.video.muxPlaybackId}
@@ -152,7 +203,7 @@ const FeaturedProject = (props: Props) => {
 							playsInline={true}
 							paused={!inView}
 						/>
-					)}
+					)} */}
 				</VideoComponentWrapper>
 			</FeaturedProjectWrapper>
 		</>

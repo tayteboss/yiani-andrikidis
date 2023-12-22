@@ -20,17 +20,17 @@ const Img = styled.img`
 
 type Props = {
 	placeholderThumbnail: {
-		url: string
-	},
+		url: string;
+	};
 	videoSnippetMp4: {
-		url: string
+		url: string;
 		video: {
-			muxPlaybackId: string
-		}
-	},
+			muxPlaybackId: string;
+		};
+	};
 	videoSnippetWebm: {
-		url: string
-	},
+		url: string;
+	};
 	isHovered: boolean;
 };
 
@@ -58,7 +58,7 @@ const AwardsCardThumbnail = (props: Props) => {
 
 	return (
 		<AwardsCardThumbnailWrapper>
-			{videoSnippetMp4 ? (
+			{videoSnippetMp4?.video?.muxPlaybackId ? (
 				<MuxPlayer
 					streamType="on-demand"
 					playbackId={videoSnippetMp4.video.muxPlaybackId}

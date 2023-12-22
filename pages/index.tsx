@@ -14,17 +14,15 @@ const PageWrapper = styled.div`
 type Props = {
 	homeData: {
 		homePageStatements: [];
-	}
-	siteData: SiteData
-	featuredProjects: {}
+	};
+	siteData: SiteData;
+	featuredProjects: {};
 };
 
 const Page = (props: Props) => {
-	const {
-		homeData,
-		siteData,
-		featuredProjects
-	} = props;
+	const { homeData, siteData, featuredProjects } = props;
+
+	console.log('featuredProjects', featuredProjects);
 
 	return (
 		<PageWrapper>
@@ -36,9 +34,9 @@ const Page = (props: Props) => {
 						{
 							url: siteData?.seoImage?.url,
 							width: 800,
-							height: 600,
-						},
-					],
+							height: 600
+						}
+					]
 				}}
 			/>
 			<Statements data={homeData?.homePageStatements} />
@@ -57,7 +55,7 @@ export async function getStaticProps() {
 			homeData,
 			siteData,
 			featuredProjects
-		},
+		}
 	};
 }
 

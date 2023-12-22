@@ -98,24 +98,27 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 
 	const [isHoveredCard, setIsHoveredCard] = useState(false);
 
-	const capitalise = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+	const capitalise = (str: string) =>
+		str.charAt(0).toUpperCase() + str.slice(1);
 
 	return (
 		<>
-			{(videoSnippetMp4 && isHovered && isHoveredCard) && (
-				<VideoComponentWrapper className="video-component-wrapper">
-					<MuxPlayer
-						streamType="on-demand"
-						playbackId={videoSnippetMp4.video.muxPlaybackId}
-						autoPlay="muted"
-						loop={true}
-						thumbnailTime={0}
-						preload="auto"
-						muted
-						playsInline={true}
-					/>
-				</VideoComponentWrapper>
-			)}
+			{videoSnippetMp4?.video?.muxPlaybackId &&
+				isHovered &&
+				isHoveredCard && (
+					<VideoComponentWrapper className="video-component-wrapper">
+						<MuxPlayer
+							streamType="on-demand"
+							playbackId={videoSnippetMp4.video.muxPlaybackId}
+							autoPlay="muted"
+							loop={true}
+							thumbnailTime={0}
+							preload="auto"
+							muted
+							playsInline={true}
+						/>
+					</VideoComponentWrapper>
+				)}
 			<ClientProjectsCardWrapper
 				className="client-card__project-details"
 				$isHovered={isHovered}
@@ -128,15 +131,23 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 							href={link}
 							target="_blank"
 							className="type-h3"
-							onMouseOver={() => setIsHovered(videoSnippetMp4?.url ? true : false)}
+							onMouseOver={() =>
+								setIsHovered(
+									videoSnippetMp4?.url ? true : false
+								)
+							}
 							onMouseOut={() => setIsHovered(false)}
 						>
 							{title}
 						</Title>
 					)}
 					<Details>
-						<Span className="type-h4">{year ? `${year} - ` : ``}</Span>
-						<Span className="type-h4">{projectType ? `${capitalise(projectType)} - ` : ``}</Span>
+						<Span className="type-h4">
+							{year ? `${year} - ` : ``}
+						</Span>
+						<Span className="type-h4">
+							{projectType ? `${capitalise(projectType)} - ` : ``}
+						</Span>
 						<Span className="type-h4">{role && role}</Span>
 					</Details>
 					{awardsRecognition && (
@@ -144,9 +155,7 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 							<RichText data={awardsRecognition} />
 						</AwardRecWrapper>
 					)}
-					{credits && (
-						<RichText data={credits} />
-					)}
+					{credits && <RichText data={credits} />}
 				</Inner>
 			</ClientProjectsCardWrapper>
 		</>
