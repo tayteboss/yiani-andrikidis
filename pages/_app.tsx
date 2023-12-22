@@ -10,10 +10,11 @@ import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
 import { Transitions } from '../shared/types/types';
 import Cursor from '../components/elements/Cursor';
+import { Analytics } from '@vercel/analytics/react';
 
 const pageTransitionVariants: Transitions = {
 	hidden: { opacity: 0, transition: { duration: 0.3 } },
-	visible: { opacity: 1, transition: { duration: 0.3, delay: 0.25 } },
+	visible: { opacity: 1, transition: { duration: 0.3, delay: 0.25 } }
 };
 
 type Props = {
@@ -22,15 +23,12 @@ type Props = {
 };
 
 const App = (props: Props) => {
-	const {
-		Component,
-		pageProps
-	} = props;
+	const { Component, pageProps } = props;
 
 	const [hasVisited, setHasVisited] = useState<boolean>(false);
 	const [cursorRefresh, setCursorRefresh] = useState<number>(1);
 
-	const router= useRouter();
+	const router = useRouter();
 	const routerEvents = router.events;
 
 	const handleExitComplete = (): void => {
@@ -55,7 +53,7 @@ const App = (props: Props) => {
 
 		return () => {
 			clearTimeout(timer);
-		}
+		};
 	}, []);
 
 	return (
@@ -75,9 +73,10 @@ const App = (props: Props) => {
 					</AnimatePresence>
 				</Layout>
 				<Cursor cursorRefresh={cursorRefresh} />
+				<Analytics />
 			</ThemeProvider>
 		</>
 	);
-}
+};
 
 export default App;
