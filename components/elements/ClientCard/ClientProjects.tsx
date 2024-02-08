@@ -12,34 +12,31 @@ type Props = {
 };
 
 const ClientProjects = (props: Props) => {
-	const {
-		data,
-		projectType,
-		setIsHovered,
-		isHovered
-	} = props;
+	const { data, projectType, setIsHovered, isHovered } = props;
 
 	const hasData = data.length > 0;
 
 	return (
 		<ClientProjectsWrapper>
-			{hasData && data.map((item, i) => (
-				<ClientProjectsCard
-					title={item?.title}
-					awardsRecognition={item?.awardsRecognition}
-					credits={item?.credits}
-					role={item?.role}
-					year={item?.year}
-					projectType={projectType}
-					link={item?.link}
-					placeholderThumbnail={item?.placeholderThumbnail}
-					videoSnippetMp4={item?.videoSnippetMp4}
-					videoSnippetWebm={item?.videoSnippetWebm}
-					isHovered={isHovered}
-					setIsHovered={setIsHovered}
-					key={i}
-				/>
-			))}
+			{hasData &&
+				data.map((item, i) => (
+					<ClientProjectsCard
+						title={item?.title}
+						awardsRecognition={item?.awardsRecognition}
+						credits={item?.credits}
+						role={item?.role}
+						year={item?.year}
+						projectType={projectType}
+						link={item?.link}
+						placeholderThumbnail={item?.placeholderThumbnail}
+						videoSnippetMp4={item?.videoSnippetMp4}
+						videoSnippetWebm={item?.videoSnippetWebm}
+						muxAssetId={item?.muxAssetId}
+						isHovered={isHovered}
+						setIsHovered={setIsHovered}
+						key={i}
+					/>
+				))}
 		</ClientProjectsWrapper>
 	);
 };

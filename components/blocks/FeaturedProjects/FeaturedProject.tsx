@@ -126,7 +126,8 @@ const FeaturedProject = (props: Props) => {
 		placeholderImage,
 		snippetVideoMp4,
 		snippetVideoWebm,
-		vimeoLink
+		vimeoLink,
+		muxAssetId
 	} = data;
 
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -167,43 +168,42 @@ const FeaturedProject = (props: Props) => {
 						Full video
 					</FullVideoTrigger>
 				)}
-				<VideoComponentWrapper className="video-component-wrapper">
-					{snippetVideoMp4?.url && (
-						<Video
-							ref={ref2}
-							autoPlay
-							muted
-							playsInline
-							loop
-							preload="auto"
-							onMouseOver={() => setIsPlaying(true)}
-							onMouseOut={() => setIsPlaying(false)}
-						>
-							<source
-								src={snippetVideoMp4.url}
-								type="video/mp4"
-							/>
-						</Video>
-					)}
-					{/* {snippetVideoMp4?.video?.muxPlaybackId && (
-						<Img
-							src={`https://image.mux.com/${snippetVideoMp4.video.muxPlaybackId}/animated.webp`}
-							loading="eager"
-						/>
-					)} */}
-					{/* {snippetVideoMp4?.video?.muxPlaybackId && (
+				<VideoComponentWrapper
+					className="video-component-wrapper"
+					onMouseOver={() => setIsPlaying(true)}
+					onMouseOut={() => setIsPlaying(false)}
+				>
+					{muxAssetId ? (
 						<MuxPlayer
 							streamType="on-demand"
-							playbackId={snippetVideoMp4.video.muxPlaybackId}
+							playbackId={muxAssetId}
 							autoPlay="muted"
 							loop={true}
 							thumbnailTime={0}
 							preload="auto"
 							muted
 							playsInline={true}
-							paused={!inView}
+							paused={isPlaying}
 						/>
-					)} */}
+					) : (
+						<>
+							{snippetVideoMp4?.url && (
+								<Video
+									ref={ref2}
+									autoPlay
+									muted
+									playsInline
+									loop
+									preload="auto"
+								>
+									<source
+										src={snippetVideoMp4?.url}
+										type="video/mp4"
+									/>
+								</Video>
+							)}
+						</>
+					)}
 				</VideoComponentWrapper>
 			</FeaturedProjectWrapper>
 		</>

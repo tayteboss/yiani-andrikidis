@@ -46,6 +46,7 @@ const AwardsCard = (props: AwardsType) => {
 		year,
 		videoSnippetMp4,
 		videoSnippetWebm,
+		muxAssetId,
 		link
 	} = props;
 
@@ -60,20 +61,15 @@ const AwardsCard = (props: AwardsType) => {
 				placeholderThumbnail={placeholderThumbnail}
 				videoSnippetMp4={videoSnippetMp4}
 				videoSnippetWebm={videoSnippetWebm}
+				muxAssetId={muxAssetId}
 				isHovered={isHovered}
 			/>
 			{title && (
-				<Title
-					href={link}
-					target="_blank"
-					className="type-h3"
-				>
+				<Title href={link} target="_blank" className="type-h3">
 					{title}
 				</Title>
 			)}
-			{awardsRecognition && (
-				<RichText data={awardsRecognition} />
-			)}
+			{awardsRecognition && <RichText data={awardsRecognition} />}
 			<FooterDetails>
 				<Span>{year && year}</Span>
 				<Span> - </Span>

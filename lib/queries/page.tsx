@@ -1,4 +1,4 @@
-import { richTextFragment } from "./fragments";
+import { richTextFragment } from './fragments';
 
 export const HOME_PAGE_QUERY: string = `
 	query Query {
@@ -32,6 +32,7 @@ export const FEATURED_PROJECTS_QUERY: string = `
 			vimeoLink {
 				url
 			}
+			muxAssetId
 		}
 	}
 `;
@@ -64,6 +65,7 @@ export const INDEX_PAGE_QUERY: string = `
 				videoSnippetWebm {
 					url
 				}
+				muxAssetId
 			}
 		}
 	}
@@ -97,6 +99,7 @@ export const INDEX_PAGE_FILTER_QUERY: string = `
 				videoSnippetWebm {
 					url
 				}
+				muxAssetId
 			}
 		}
 	}
@@ -125,6 +128,7 @@ export const AWARD_PAGE_QUERY: string = `
 			videoSnippetWebm {
 				url
 			}
+			muxAssetId
 		}
 	}
 `;

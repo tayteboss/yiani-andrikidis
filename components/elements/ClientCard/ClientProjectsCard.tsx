@@ -93,6 +93,7 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 		videoSnippetMp4,
 		videoSnippetWebm,
 		isHovered,
+		muxAssetId,
 		setIsHovered
 	} = props;
 
@@ -103,22 +104,41 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 
 	return (
 		<>
-			{videoSnippetMp4?.video?.muxPlaybackId &&
-				isHovered &&
-				isHoveredCard && (
-					<VideoComponentWrapper className="video-component-wrapper">
-						<MuxPlayer
-							streamType="on-demand"
-							playbackId={videoSnippetMp4.video.muxPlaybackId}
-							autoPlay="muted"
-							loop={true}
-							thumbnailTime={0}
-							preload="auto"
-							muted
-							playsInline={true}
-						/>
-					</VideoComponentWrapper>
-				)}
+			{muxAssetId && isHovered && isHoveredCard ? (
+				<VideoComponentWrapper className="video-component-wrapper">
+					<MuxPlayer
+						streamType="on-demand"
+						playbackId={muxAssetId}
+						autoPlay="muted"
+						loop={true}
+						thumbnailTime={0}
+						preload="auto"
+						muted
+						playsInline={true}
+					/>
+				</VideoComponentWrapper>
+			) : (
+				<>
+					{videoSnippetMp4?.video?.muxPlaybackId &&
+						isHovered &&
+						isHoveredCard && (
+							<VideoComponentWrapper className="video-component-wrapper">
+								<MuxPlayer
+									streamType="on-demand"
+									playbackId={
+										videoSnippetMp4.video.muxPlaybackId
+									}
+									autoPlay="muted"
+									loop={true}
+									thumbnailTime={0}
+									preload="auto"
+									muted
+									playsInline={true}
+								/>
+							</VideoComponentWrapper>
+						)}
+				</>
+			)}
 			<ClientProjectsCardWrapper
 				className="client-card__project-details"
 				$isHovered={isHovered}

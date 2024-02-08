@@ -32,6 +32,7 @@ type Props = {
 		url: string;
 	};
 	isHovered: boolean;
+	muxAssetId: string;
 };
 
 const AwardsCardThumbnail = (props: Props) => {
@@ -39,7 +40,8 @@ const AwardsCardThumbnail = (props: Props) => {
 		placeholderThumbnail,
 		videoSnippetMp4,
 		videoSnippetWebm,
-		isHovered
+		isHovered,
+		muxAssetId
 	} = props;
 
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -58,10 +60,10 @@ const AwardsCardThumbnail = (props: Props) => {
 
 	return (
 		<AwardsCardThumbnailWrapper>
-			{videoSnippetMp4?.video?.muxPlaybackId ? (
+			{muxAssetId ? (
 				<MuxPlayer
 					streamType="on-demand"
-					playbackId={videoSnippetMp4.video.muxPlaybackId}
+					playbackId={muxAssetId}
 					autoPlay="muted"
 					loop={true}
 					thumbnailTime={0}
@@ -70,7 +72,22 @@ const AwardsCardThumbnail = (props: Props) => {
 					playsInline={true}
 				/>
 			) : (
-				<Img src={placeholderThumbnail?.url} />
+				<>
+					{videoSnippetMp4?.video?.muxPlaybackId ? (
+						<MuxPlayer
+							streamType="on-demand"
+							playbackId={videoSnippetMp4.video.muxPlaybackId}
+							autoPlay="muted"
+							loop={true}
+							thumbnailTime={0}
+							preload="auto"
+							muted
+							playsInline={true}
+						/>
+					) : (
+						<Img src={placeholderThumbnail?.url} />
+					)}
+				</>
 			)}
 		</AwardsCardThumbnailWrapper>
 	);

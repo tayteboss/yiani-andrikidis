@@ -8,14 +8,15 @@ export type FeaturedProjectType = {
 		url: string;
 		video: {
 			muxPlaybackId: string;
-		}
+		};
 	};
 	snippetVideoWebm: {
 		url: string;
 	};
 	vimeoLink: {
 		url: string;
-	}
+	};
+	muxAssetId: string;
 };
 
 export type ClientType = {
@@ -39,12 +40,13 @@ export type ClientProjectType = {
 		url: string;
 		video: {
 			muxPlaybackId: string;
-		}
+		};
 	};
 	videoSnippetWebm: {
 		url: string;
 	};
 	isHovered: boolean;
+	muxAssetId: string;
 	setIsHovered: (isHovered: boolean) => void;
 };
 
@@ -61,12 +63,13 @@ export type AwardsType = {
 		url: string;
 		video: {
 			muxPlaybackId: string;
-		}
-	}
+		};
+	};
 	videoSnippetWebm: {
 		url: string;
-	}
-	year: string
+	};
+	year: string;
+	muxAssetId: string;
 };
 
 export type HomeStatements = {
@@ -78,7 +81,7 @@ export type SiteData = {
 	seoDescription: string;
 	seoImage: {
 		url: string;
-	}
+	};
 	highlightColour: {
 		cssRgb: string;
 	};
@@ -95,7 +98,7 @@ export type MediaType = {
 			};
 			placeholderImage: {
 				url: string;
-			}
+			};
 		}
 	];
 };
@@ -105,13 +108,13 @@ export type Transitions = {
 		opacity: number;
 		transition: {
 			duration: number;
-		}
-	}
+		};
+	};
 	visible: {
 		opacity: number;
 		transition: {
 			duration: number;
-			delay?: number
-		}
-	}
+			delay?: number;
+		};
+	};
 };
