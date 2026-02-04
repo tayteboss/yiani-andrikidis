@@ -3,10 +3,10 @@
   "private": true,
   "scripts": {
     "buildJson": "node scripts/buildJson.js",
-    "dev": "yarn buildJson && next dev",
-    "build": "yarn buildJson && next build",
+    "dev": "node scripts/buildJson.js && next dev",
+    "build": "node scripts/buildJson.js && next build",
     "postbuild": "next-sitemap",
-    "start": "yarn buildJson && next start",
+    "start": "node scripts/buildJson.js && next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
