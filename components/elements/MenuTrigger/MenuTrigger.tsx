@@ -11,7 +11,8 @@ type StyledProps = {
 
 const MenuTriggerWrapper = styled.div<StyledProps>`
 	position: absolute;
-	bottom: ${(props) => props.$isHomePage ? 'calc(100% + 32px)' : 'calc(100% + 16px)'};
+	bottom: ${(props) =>
+		props.$isHomePage ? 'calc(100% + 32px)' : 'calc(100% + 16px)'};
 	right: ${pxToRem(16)};
 	background: rgba(242, 242, 244, 0.5);
 	border: 1px solid var(--colour-black200);
@@ -49,12 +50,12 @@ const LogoWrapper = styled.div`
 	display: flex;
 	color: var(--colour-white);
 	padding: ${pxToRem(8)} ${pxToRem(32)} ${pxToRem(8)} ${pxToRem(16)};
-`;
 
-const LogoTag = styled.a`
-	text-decoration: none;
-	color: var(--colour-black800);
-	white-space: pre;
+	a {
+		text-decoration: none;
+		color: var(--colour-black800);
+		white-space: pre;
+	}
 `;
 
 const Indicator = styled.span`
@@ -87,14 +88,13 @@ const MenuTrigger = () => {
 		>
 			{router.pathname !== '/work' && (
 				<LogoWrapper>
-					<Link href="/" passHref>
-						<LogoTag className="type-h4">
-							Yiani Andrikidis
-						</LogoTag>
+					<Link href="/" className="type-h4">
+						Yiani Andrikidis
 					</Link>
 					{getPageTitle() !== 'Home' && (
 						<Indicator className="type-h4">
-							{" "}// {getPageTitle()}
+							{' '}
+							// {getPageTitle()}
 						</Indicator>
 					)}
 				</LogoWrapper>

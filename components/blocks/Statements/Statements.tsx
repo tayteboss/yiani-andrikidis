@@ -60,7 +60,9 @@ const Statements = (props: Props) => {
 	} = props;
 
 	const [index, setIndex] = useState(1);
-	const [displayedTexts, setDisplayedTexts] = useState<any>([data[0]]);
+	const [displayedTexts, setDisplayedTexts] = useState<any>(() =>
+		data?.length ? [data[0]] : []
+	);
 	const [isHovered, setIsHovered] = useState(false);
 	const [moreO, setMoreO] = useState("o");
 	const [moreBtnTooCloseToRightEdge, setMoreBtnTooCloseToRightEdge] = useState(false);

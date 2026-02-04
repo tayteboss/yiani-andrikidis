@@ -7,12 +7,10 @@ const ClientProjectsWrapper = styled.div``;
 type Props = {
 	data: ClientProjectType[];
 	projectType: string;
-	isHovered: boolean;
-	setIsHovered: (isHovered: boolean) => void;
 };
 
 const ClientProjects = (props: Props) => {
-	const { data, projectType, setIsHovered, isHovered } = props;
+	const { data, projectType } = props;
 
 	const hasData = data.length > 0;
 
@@ -32,8 +30,6 @@ const ClientProjects = (props: Props) => {
 						videoSnippetMp4={item?.videoSnippetMp4}
 						videoSnippetWebm={item?.videoSnippetWebm}
 						muxAssetId={item?.muxAssetId}
-						isHovered={isHovered}
-						setIsHovered={setIsHovered}
 						key={i}
 					/>
 				))}

@@ -22,7 +22,7 @@ export type FeaturedProjectType = {
 export type ClientType = {
 	client: string;
 	projectType: string;
-	project: [];
+	project: ClientProjectType[];
 };
 
 export type ClientProjectType = {
@@ -45,9 +45,9 @@ export type ClientProjectType = {
 	videoSnippetWebm: {
 		url: string;
 	};
-	isHovered: boolean;
+	isHovered?: boolean;
 	muxAssetId: string;
-	setIsHovered: (isHovered: boolean) => void;
+	setIsHovered?: (isHovered: boolean) => void;
 };
 
 export type AwardsType = {

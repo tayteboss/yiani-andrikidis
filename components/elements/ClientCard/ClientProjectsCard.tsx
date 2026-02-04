@@ -2,14 +2,9 @@ import styled from 'styled-components';
 import { ClientProjectType } from '../../../shared/types/types';
 import RichText from '../../common/RichText';
 import pxToRem from '../../../utils/pxToRem';
-import { useState } from 'react';
-import MuxPlayer from '@mux/mux-player-react';
+import MuxPlayer from '@mux/mux-player-react/lazy';
 
-type StyledProps = {
-	$isHovered: boolean;
-};
-
-const ClientProjectsCardWrapper = styled.div<StyledProps>`
+const ClientProjectsCardWrapper = styled.div`
 	position: relative;
 	z-index: 2;
 
@@ -25,17 +20,11 @@ const ClientProjectsCardWrapper = styled.div<StyledProps>`
 	}
 
 	&:not(:last-child) {
-		margin-bottom: ${pxToRem(24)};
+		margin-bottom: ${pxToRem(40)};
 	}
 `;
 
-const Inner = styled.div`
-	max-width: ${pxToRem(220)};
-
-	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-		max-width: 100%;
-	}
-`;
+const Inner = styled.div``;
 
 const Title = styled.a`
 	text-decoration: none;
@@ -63,14 +52,9 @@ const AwardRecWrapper = styled.div`
 `;
 
 const VideoComponentWrapper = styled.div`
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 5;
+	width: 100%;
 	overflow: hidden;
-	pointer-events: none;
-	width: 40%;
+	margin-bottom: ${pxToRem(16)};
 
 	mux-player {
 		height: auto;
@@ -92,72 +76,36 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 		placeholderThumbnail,
 		videoSnippetMp4,
 		videoSnippetWebm,
-		isHovered,
-		muxAssetId,
-		setIsHovered
+		muxAssetId
 	} = props;
-
-	const [isHoveredCard, setIsHoveredCard] = useState(false);
 
 	const capitalise = (str: string) =>
 		str.charAt(0).toUpperCase() + str.slice(1);
 
 	return (
 		<>
-			{muxAssetId && isHovered && isHoveredCard ? (
-				<VideoComponentWrapper className="video-component-wrapper">
-					<MuxPlayer
-						streamType="on-demand"
-						playbackId={muxAssetId}
-						autoPlay="muted"
-						loop={true}
-						thumbnailTime={0}
-						preload="auto"
-						muted
-						playsInline={true}
-					/>
-				</VideoComponentWrapper>
-			) : (
-				<>
-					{videoSnippetMp4?.video?.muxPlaybackId &&
-						isHovered &&
-						isHoveredCard && (
-							<VideoComponentWrapper className="video-component-wrapper">
-								<MuxPlayer
-									streamType="on-demand"
-									playbackId={
-										videoSnippetMp4.video.muxPlaybackId
-									}
-									autoPlay="muted"
-									loop={true}
-									thumbnailTime={0}
-									preload="auto"
-									muted
-									playsInline={true}
-								/>
-							</VideoComponentWrapper>
-						)}
-				</>
-			)}
-			<ClientProjectsCardWrapper
-				className="client-card__project-details"
-				$isHovered={isHovered}
-				onMouseOver={() => setIsHoveredCard(true)}
-				onMouseOut={() => setIsHoveredCard(false)}
-			>
+			<ClientProjectsCardWrapper className="client-card__project-details">
 				<Inner>
+					{(videoSnippetMp4?.video?.muxPlaybackId || muxAssetId) && (
+						<VideoComponentWrapper className="video-component-wrapper">
+							<MuxPlayer
+								streamType="on-demand"
+								playbackId={
+									videoSnippetMp4?.video?.muxPlaybackId ||
+									muxAssetId
+								}
+								autoPlay="muted"
+								loop={true}
+								thumbnailTime={0}
+								preload="auto"
+								muted
+								playsInline={true}
+								loading="viewport"
+							/>
+						</VideoComponentWrapper>
+					)}
 					{title && (
-						<Title
-							href={link}
-							target="_blank"
-							className="type-h3"
-							onMouseOver={() =>
-								setIsHovered(
-									videoSnippetMp4?.url ? true : false
-								)
-							}
-							onMouseOut={() => setIsHovered(false)}
-						>
+						<Title href={link} target="_blank" className="type-h3">
 							{title}
 						</Title>
 					)}

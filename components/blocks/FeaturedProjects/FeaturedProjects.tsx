@@ -86,7 +86,7 @@ const FeaturedProjects = (props: Props) => {
 	const [emblaRef, emblaApi] = useEmblaCarousel(
 		{
 			loop: false,
-			align: 0,
+			align: 'start',
 			dragFree: true,
 			axis: viewportWidth === 'mobile' ? 'y' : 'x',
 		}

@@ -21,11 +21,21 @@ const MenuWrapper = styled.div`
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		overflow: auto;
 	}
+
+	a {
+		color: var(--colour-black800);
+		text-decoration: none;
+
+		transition: all var(--transition-speed-default) var(--transition-ease);
+
+		&:hover {
+			color: var(--colour-white);
+		}
+	}
 `;
 
 const TopWrapper = styled.div`
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
-
 		.grid {
 			height: calc((var(--vh) * 50) - 16px);
 			display: flex;
@@ -72,23 +82,12 @@ const BottomWrapper = styled.div`
 	}
 `;
 
-const LinkTag = styled.a`
-	color: var(--colour-black800);
-	text-decoration: none;
-
-	transition: all var(--transition-speed-default) var(--transition-ease);
-
-	&:hover {
-		color: var(--colour-white);
-	}
-`;
-
 const CloseButton = styled.button`
 	color: var(--colour-white);
 	position: relative;
 
 	&::after {
-		content: "";
+		content: '';
 		position: absolute;
 		bottom: 3px;
 		left: 50%;
@@ -122,24 +121,15 @@ const ImageWrapper = styled.div`
 const Img = styled.img``;
 
 type Props = {
-	menuIsOpen: boolean,
-	setMenuIsOpen: (menuIsOpen: boolean) => void,
+	menuIsOpen: boolean;
+	setMenuIsOpen: (menuIsOpen: boolean) => void;
 };
 
 const Menu = (props: Props) => {
-	const {
-		menuIsOpen,
-		setMenuIsOpen,
-	} = props;
+	const { menuIsOpen, setMenuIsOpen } = props;
 
-	const {
-		instagramLink,
-		vimeoLink,
-		email,
-		phone,
-		cvLink,
-		profilePicture
-	} = options?.siteInformation;
+	const { instagramLink, vimeoLink, email, phone, cvLink, profilePicture } =
+		options?.siteInformation;
 
 	return (
 		<>
@@ -148,14 +138,14 @@ const Menu = (props: Props) => {
 					<TopWrapper>
 						<LayoutGrid>
 							<PrimaryListWrapper>
-								<Link href="/" passHref>
-									<LinkTag className="type-h1">Home</LinkTag>
+								<Link href="/" className="type-h1">
+									Home
 								</Link>
-								<Link href="/work" passHref>
-									<LinkTag className="type-h1">Work</LinkTag>
+								<Link href="/work" className="type-h1">
+									Work
 								</Link>
-								<Link href="/awards" passHref>
-									<LinkTag className="type-h1">Awards</LinkTag>
+								<Link href="/awards" className="type-h1">
+									Awards
 								</Link>
 								<CloseButton
 									className="type-h1"
@@ -166,23 +156,38 @@ const Menu = (props: Props) => {
 							</PrimaryListWrapper>
 							<SecondaryListWrapper>
 								{instagramLink && (
-									<Link href={instagramLink} passHref>
-										<LinkTag className="type-h1" target="_blank">Instagram</LinkTag>
+									<Link
+										href={instagramLink}
+										className="type-h1"
+									>
+										Instagram
 									</Link>
 								)}
 								{vimeoLink && (
-									<Link href={vimeoLink} passHref>
-										<LinkTag className="type-h1" target="_blank">Vimeo</LinkTag>
+									<Link
+										href={vimeoLink}
+										target="_blank"
+										className="type-h1"
+									>
+										Vimeo
 									</Link>
 								)}
 								{email && (
-									<Link href={`mailto: ${email}`} passHref>
-										<LinkTag className="type-h1">Email</LinkTag>
+									<Link
+										href={`mailto: ${email}`}
+										target="_blank"
+										className="type-h1"
+									>
+										Email
 									</Link>
 								)}
 								{cvLink && (
-									<Link href={cvLink} passHref>
-										<LinkTag className="type-h1" target="_blank">CV</LinkTag>
+									<Link
+										href={cvLink}
+										className="type-h1"
+										target="_blank"
+									>
+										CV
 									</Link>
 								)}
 								{profilePicture && (
@@ -194,8 +199,12 @@ const Menu = (props: Props) => {
 						</LayoutGrid>
 					</TopWrapper>
 					<BottomWrapper>
-						<Link href="https://tayte.co/" passHref>
-							<LinkTag target="_blank" className="type-h3">built by tayte.co</LinkTag>
+						<Link
+							href="https://tayte.co/"
+							className="type-h3"
+							target="_blank"
+						>
+							built by tayte.co
 						</Link>
 					</BottomWrapper>
 				</MenuWrapper>

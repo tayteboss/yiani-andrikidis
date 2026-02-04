@@ -2,68 +2,67 @@ import styled from 'styled-components';
 import ClientCard from '../../elements/ClientCard';
 import { ClientType } from '../../../shared/types/types';
 import LayoutWrapper from '../../common/LayoutWrapper';
+import LayoutGrid from '../../common/LayoutGrid';
 import pxToRem from '../../../utils/pxToRem';
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-import { useState } from 'react';
 
-type StyledProps = {
-	$isHovered: boolean;
-};
-
-const ClientsListWrapper = styled.div<StyledProps>`
+const ClientsListWrapper = styled.div`
 	padding: ${pxToRem(16)} 0 ${pxToRem(240)};
 
-	.client-card {
-		&__title,
-		&__project-details {
-			opacity: ${({ $isHovered }) => $isHovered ? 0.2 : 1};
+	.grid {
+		row-gap: ${pxToRem(120)};
+
+		@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+			row-gap: ${pxToRem(60)};
+		}
+
+		@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+			row-gap: ${pxToRem(40)};
 		}
 	}
 `;
 
+const GridItem = styled.div`
+	grid-column: span 4;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		grid-column: span 6;
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: span 3;
+	}
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		grid-column: 1 / -1;
+	}
+`;
+
 const ClientsList = (props: any) => {
-	const {
-		data,
-		filteredData
-	} = props;
+	const { data, filteredData } = props;
 
-	const hasData = data?.length > 0 || filteredData?.length > 0;
+	const list = Array.isArray(filteredData)
+		? filteredData
+		: Array.isArray(data)
+		? data
+		: [];
 
-	const [isHovered, setIsHovered] = useState(false);
+	const hasData = list.length > 0;
 
 	return (
-		<ClientsListWrapper $isHovered={isHovered}>
+		<ClientsListWrapper>
 			<LayoutWrapper>
 				{hasData && (
-					<ResponsiveMasonry
-						columnsCountBreakPoints={{350: 1, 500: 2, 900: 3, 1200: 4, 1800: 5}}
-					>
-						<Masonry gutter="16px">
-							{filteredData ? (
-								filteredData.map((item: ClientType, i: number) => (
-									<ClientCard
-										client={item?.client}
-										projectType={item?.projectType}
-										project={item.project}
-										key={i}
-										setIsHovered={setIsHovered}
-										isHovered={isHovered}
-									/>
-								))
-							) : (
-								data.map((item: ClientType, i: number) => (
-									<ClientCard
-										client={item?.client}
-										projectType={item?.projectType}
-										project={item.project}
-										key={i}
-										setIsHovered={setIsHovered}
-										isHovered={isHovered}
-									/>
-								))
-							)}
-						</Masonry>
-					</ResponsiveMasonry>
+					<LayoutGrid>
+						{list.map((item: ClientType, i: number) => (
+							<GridItem key={i}>
+								<ClientCard
+									client={item?.client}
+									projectType={item?.projectType}
+									project={item.project}
+								/>
+							</GridItem>
+						))}
+					</LayoutGrid>
 				)}
 			</LayoutWrapper>
 		</ClientsListWrapper>

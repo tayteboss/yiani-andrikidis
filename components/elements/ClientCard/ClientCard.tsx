@@ -21,32 +21,15 @@ type Props = {
 	client: string;
 	projectType: string;
 	project: ClientProjectType[];
-	isHovered: boolean;
-	setIsHovered: (isHovered: boolean) => void;
 };
 
 const ClientCard = (props: Props) => {
-	const {
-		client,
-		project,
-		projectType,
-		setIsHovered,
-		isHovered
-	} = props;
+	const { client, project, projectType } = props;
 
 	return (
 		<ClientCardWrapper>
-			{client && (
-				<Title className="client-card__title">
-					{client}
-				</Title>
-			)}
-			<ClientProjects
-				data={project}
-				projectType={projectType}
-				setIsHovered={setIsHovered}
-				isHovered={isHovered}
-			/>
+			{client && <Title className="client-card__title">{client}</Title>}
+			<ClientProjects data={project} projectType={projectType} />
 		</ClientCardWrapper>
 	);
 };

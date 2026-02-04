@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 
 const useViewportWidth = (): string => {
-	const [breakpoint, setBreakpoint] = useState<string>('');
+	// Default to 'desktop' so server and first client paint match (avoids hydration mismatch)
+	const [breakpoint, setBreakpoint] = useState<string>('desktop');
 
 	const handleResize = (): void => {
 		const width: number = window.innerWidth;

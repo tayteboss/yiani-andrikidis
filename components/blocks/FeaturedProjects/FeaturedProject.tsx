@@ -131,8 +131,13 @@ const FeaturedProject = (props: Props) => {
 	} = data;
 
 	const [isPlaying, setIsPlaying] = useState(false);
+	const [muxError, setMuxError] = useState(false);
 
 	const ref2 = useRef<HTMLVideoElement>(null);
+
+	// Mux Player requires playback ID; prefer muxPlaybackId over muxAssetId to avoid format errors
+	const playbackId =
+		snippetVideoMp4?.video?.muxPlaybackId ?? muxAssetId ?? undefined;
 
 	useEffect(() => {
 		if (!ref2.current) return;
@@ -173,10 +178,10 @@ const FeaturedProject = (props: Props) => {
 					onMouseOver={() => setIsPlaying(true)}
 					onMouseOut={() => setIsPlaying(false)}
 				>
-					{muxAssetId ? (
+					{playbackId && !muxError ? (
 						<MuxPlayer
 							streamType="on-demand"
-							playbackId={muxAssetId}
+							playbackId={playbackId}
 							autoPlay="muted"
 							loop={true}
 							thumbnailTime={0}
@@ -184,6 +189,7 @@ const FeaturedProject = (props: Props) => {
 							muted
 							playsInline={true}
 							paused={isPlaying}
+							onError={() => setMuxError(true)}
 						/>
 					) : (
 						<>
@@ -201,6 +207,9 @@ const FeaturedProject = (props: Props) => {
 										type="video/mp4"
 									/>
 								</Video>
+							)}
+							{!snippetVideoMp4?.url && placeholderImage?.url && (
+								<Img src={placeholderImage.url} alt="" />
 							)}
 						</>
 					)}

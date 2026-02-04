@@ -5,6 +5,7 @@ import { SiteData } from '../shared/types/types';
 import MenuTrigger from '../components/elements/MenuTrigger';
 import pxToRem from '../utils/pxToRem';
 import AwardsList from '../components/blocks/AwardsList';
+import LayoutWrapper from '../components/common/LayoutWrapper';
 
 const PageWrapper = styled.div`
 	min-height: calc(var(--vh) * 100);
@@ -21,16 +22,21 @@ const PageWrapper = styled.div`
 	}
 `;
 
+const TitleWrapper = styled.section`
+	margin-bottom: ${pxToRem(24)};
+	padding: ${pxToRem(80)} 0 ${pxToRem(8)};
+	border-bottom: 1px solid var(--colour-black400);
+`;
+
+const Title = styled.h1``;
+
 type Props = {
-	siteData: SiteData
-	awardsData: {}
+	siteData: SiteData;
+	awardsData: {};
 };
 
 const Awards = (props: Props) => {
-	const {
-		siteData,
-		awardsData,
-	} = props;
+	const { siteData, awardsData } = props;
 
 	return (
 		<PageWrapper>
@@ -42,11 +48,16 @@ const Awards = (props: Props) => {
 						{
 							url: siteData?.seoImage?.url,
 							width: 800,
-							height: 600,
-						},
-					],
+							height: 600
+						}
+					]
 				}}
 			/>
+			<TitleWrapper>
+				<LayoutWrapper>
+					<Title>Awards</Title>
+				</LayoutWrapper>
+			</TitleWrapper>
 			<AwardsList data={awardsData} />
 			<MenuTrigger />
 		</PageWrapper>
@@ -60,8 +71,8 @@ export async function getStaticProps() {
 	return {
 		props: {
 			siteData,
-			awardsData,
-		},
+			awardsData
+		}
 	};
 }
 

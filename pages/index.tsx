@@ -1,10 +1,30 @@
 import styled from 'styled-components';
+import dynamic from 'next/dynamic';
 import { getFeaturedProjects, getHomePage, getSiteData } from '../lib/datocms';
 import { NextSeo } from 'next-seo';
 import { SiteData } from '../shared/types/types';
 import Statements from '../components/blocks/Statements';
-import FeaturedProjects from '../components/blocks/FeaturedProjects';
-import { useEffect } from 'react';
+
+const FeaturedProjects = dynamic(
+	() => import('../components/blocks/FeaturedProjects'),
+	{
+		ssr: false,
+		loading: () => (
+			<div
+				style={{
+					position: 'fixed',
+					bottom: 0,
+					left: 0,
+					width: '100%',
+					height: '30vh',
+					background: 'var(--colour-black800)',
+					borderTopRightRadius: 4,
+					borderTopLeftRadius: 4,
+				}}
+			/>
+		),
+	}
+);
 
 const PageWrapper = styled.div`
 	min-height: calc(var(--vh) * 100);
@@ -21,8 +41,6 @@ type Props = {
 
 const Page = (props: Props) => {
 	const { homeData, siteData, featuredProjects } = props;
-
-	console.log('featuredProjects', featuredProjects);
 
 	return (
 		<PageWrapper>
