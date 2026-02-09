@@ -25,6 +25,7 @@ export const FEATURED_PROJECTS_QUERY: string = `
 					muxPlaybackId
 				}
 			}
+			usePortrait
 			snippetVideoWebm {
 				url
 			}
@@ -62,6 +63,7 @@ export const INDEX_PAGE_QUERY: string = `
 						muxPlaybackId
 					}
 				}
+				usePortrait
 				videoSnippetWebm {
 					url
 				}
@@ -96,6 +98,7 @@ export const INDEX_PAGE_FILTER_QUERY: string = `
 						muxPlaybackId
 					}
 				}
+				usePortrait
 				videoSnippetWebm {
 					url
 				}
@@ -125,6 +128,7 @@ export const AWARD_PAGE_QUERY: string = `
 					muxPlaybackId
 				}
 			}
+			usePortrait
 			videoSnippetWebm {
 				url
 			}

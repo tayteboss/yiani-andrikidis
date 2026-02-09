@@ -92,7 +92,10 @@ const Work = (props: Props) => {
 	useEffect(() => {
 		if (router.isReady) {
 			const category = router.query.category as string;
-			if (category && ['director', 'producer'].includes(category.toLowerCase())) {
+			if (
+				category &&
+				['director', 'producer'].includes(category.toLowerCase())
+			) {
 				setActiveCategory(category.toLowerCase());
 			} else {
 				setActiveCategory('all');
@@ -102,9 +105,9 @@ const Work = (props: Props) => {
 
 	const handleCategoryChange = (category: string) => {
 		setActiveCategory(category);
-		
+
 		const query = { ...router.query };
-		
+
 		if (category === 'all') {
 			delete query.category;
 		} else {
@@ -131,7 +134,8 @@ const Work = (props: Props) => {
 				if (activeCategory === 'all') return client;
 
 				const filteredProjects = client.project.filter(
-					(p) => p.role?.toLowerCase() === activeCategory.toLowerCase()
+					(p) =>
+						p.role?.toLowerCase() === activeCategory.toLowerCase()
 				);
 
 				return {

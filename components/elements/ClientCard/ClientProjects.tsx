@@ -30,6 +30,7 @@ const ClientProjects = (props: Props) => {
 						videoSnippetMp4={item?.videoSnippetMp4}
 						videoSnippetWebm={item?.videoSnippetWebm}
 						muxAssetId={item?.muxAssetId}
+						usePortrait={item?.usePortrait}
 						key={i}
 					/>
 				))}

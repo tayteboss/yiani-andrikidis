@@ -10,6 +10,7 @@ export type FeaturedProjectType = {
 			muxPlaybackId: string;
 		};
 	};
+	usePortrait?: boolean;
 	snippetVideoWebm: {
 		url: string;
 	};
@@ -42,6 +43,7 @@ export type ClientProjectType = {
 			muxPlaybackId: string;
 		};
 	};
+	usePortrait?: boolean;
 	videoSnippetWebm: {
 		url: string;
 	};
@@ -65,6 +67,7 @@ export type AwardsType = {
 			muxPlaybackId: string;
 		};
 	};
+	usePortrait?: boolean;
 	videoSnippetWebm: {
 		url: string;
 	};

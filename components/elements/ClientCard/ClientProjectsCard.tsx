@@ -76,11 +76,14 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 		placeholderThumbnail,
 		videoSnippetMp4,
 		videoSnippetWebm,
-		muxAssetId
+		muxAssetId,
+		usePortrait
 	} = props;
 
 	const capitalise = (str: string) =>
 		str.charAt(0).toUpperCase() + str.slice(1);
+
+	const aspectRatio = usePortrait ? '9 / 16' : '16 / 9';
 
 	return (
 		<>
@@ -89,6 +92,7 @@ const ClientProjectsCard = (props: ClientProjectType) => {
 					{(videoSnippetMp4?.video?.muxPlaybackId || muxAssetId) && (
 						<VideoComponentWrapper className="video-component-wrapper">
 							<MuxPlayer
+								style={{ aspectRatio }}
 								streamType="on-demand"
 								playbackId={
 									videoSnippetMp4?.video?.muxPlaybackId ||
