@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { getAwardPage, getIndexPage, getSiteData } from '../lib/datocms';
-import { NextSeo } from 'next-seo';
+import { getSiteData } from '../lib/datocms';
+// import { getAwardPage, getSiteData } from '../lib/datocms';
+// import { NextSeo } from 'next-seo';
 import { SiteData } from '../shared/types/types';
 import MenuTrigger from '../components/elements/MenuTrigger';
 import pxToRem from '../utils/pxToRem';
-import AwardsList from '../components/blocks/AwardsList';
-import LayoutWrapper from '../components/common/LayoutWrapper';
+// import AwardsList from '../components/blocks/AwardsList';
+// import LayoutWrapper from '../components/common/LayoutWrapper';
 
 const PageWrapper = styled.div`
 	min-height: calc(var(--vh) * 100);
@@ -22,6 +23,7 @@ const PageWrapper = styled.div`
 	}
 `;
 
+/*
 const TitleWrapper = styled.section`
 	margin-bottom: ${pxToRem(24)};
 	padding: ${pxToRem(80)} 0 ${pxToRem(8)};
@@ -29,17 +31,17 @@ const TitleWrapper = styled.section`
 `;
 
 const Title = styled.h1``;
+*/
 
 type Props = {
 	siteData: SiteData;
-	awardsData: {};
+	// awardsData: AwardType[]; // restore when uncommenting AwardsList
 };
 
-const Awards = (props: Props) => {
-	const { siteData, awardsData } = props;
-
+const Awards = (_props: Props) => {
 	return (
 		<PageWrapper>
+			{/* Restore awards page UI — uncomment block below and TitleWrapper/Title above:
 			<NextSeo
 				title={`Awards - ${siteData?.seoTitle}` || 'Yiani Andrikidis'}
 				description={siteData?.seoDescription || 'Yiani Andrikidis'}
@@ -59,6 +61,7 @@ const Awards = (props: Props) => {
 				</LayoutWrapper>
 			</TitleWrapper>
 			<AwardsList data={awardsData} />
+			*/}
 			<MenuTrigger />
 		</PageWrapper>
 	);
@@ -66,12 +69,12 @@ const Awards = (props: Props) => {
 
 export async function getStaticProps() {
 	const siteData = await getSiteData();
-	let awardsData = await getAwardPage();
+	// const awardsData = await getAwardPage();
 
 	return {
 		props: {
-			siteData,
-			awardsData
+			siteData
+			// awardsData
 		}
 	};
 }
