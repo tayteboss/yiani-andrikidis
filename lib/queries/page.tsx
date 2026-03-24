@@ -108,6 +108,9 @@ export const INDEX_PAGE_FILTER_QUERY: string = `
 	}
 `;
 
+/*
+ * Awards page — uncomment this export when restoring /awards.
+ *
 export const AWARD_PAGE_QUERY: string = `
 	query Query {
 		allAwards(first: 100) {
@@ -136,3 +139,4 @@ export const AWARD_PAGE_QUERY: string = `
 		}
 	}
 `;
+*/

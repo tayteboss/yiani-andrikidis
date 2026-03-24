@@ -76,9 +76,9 @@ const MenuTrigger = () => {
 		if (router.pathname === '/work') {
 			return 'Work';
 		}
-		if (router.pathname === '/awards') {
-			return 'Awards';
-		}
+		// if (router.pathname === '/awards') {
+		// 	return 'Awards';
+		// }
 	};
 
 	return (
