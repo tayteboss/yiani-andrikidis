@@ -144,9 +144,9 @@ const Menu = (props: Props) => {
 								<Link href="/work" className="type-h1">
 									Work
 								</Link>
-								<Link href="/awards" className="type-h1">
+								{/* <Link href="/awards" className="type-h1">
 									Awards
-								</Link>
+								</Link> */}
 								<CloseButton
 									className="type-h1"
 									onClick={() => setMenuIsOpen(false)}
