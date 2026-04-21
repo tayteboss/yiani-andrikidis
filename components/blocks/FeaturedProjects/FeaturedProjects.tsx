@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useEmblaCarousel from 'embla-carousel-react'
+import useEmblaCarousel from 'embla-carousel-react';
 import FeaturedProject from './FeaturedProject';
 import pxToRem from '../../../utils/pxToRem';
 import FeaturedDragButton from '../../elements/FeaturedDragButton';
@@ -39,6 +39,8 @@ const Embla = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		padding: ${pxToRem(16)};
+		/* Keep vertical drag gestures on the carousel, not page scroll. */
+		touch-action: pan-x;
 	}
 `;
 
@@ -48,7 +50,7 @@ const EmblaContainer = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		flex-direction: column;
-		height: 100% !important;
+		height: var(--feature-wrapper-height) !important;
 		padding-bottom: 32px;
 	}
 `;
@@ -61,8 +63,8 @@ const EmblaSlide = styled.div`
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		margin-right: 0;
 		margin-bottom: ${pxToRem(16)};
-		height: 100%;
 		width: 100%;
+		min-height: 0;
 	}
 `;
 
@@ -71,26 +73,25 @@ type Props = {
 };
 
 const FeaturedProjects = (props: Props) => {
-	const {
-		data
-	} = props;
+	const { data } = props;
 
 	const [isMini, setIsMini] = useState(true);
-	const [showFullVideo, setShowFullVideo] = useState({ isActive: false, url: "" });
+	const [showFullVideo, setShowFullVideo] = useState({
+		isActive: false,
+		url: ''
+	});
 	const [isHovered, setIsHovered] = useState(false);
 
 	const hasData = data && data.length > 0;
 
 	const viewportWidth = useViewportWidth();
 
-	const [emblaRef, emblaApi] = useEmblaCarousel(
-		{
-			loop: false,
-			align: 'start',
-			dragFree: true,
-			axis: viewportWidth === 'mobile' ? 'y' : 'x',
-		}
-	);
+	const [emblaRef, emblaApi] = useEmblaCarousel({
+		loop: false,
+		align: 'start',
+		dragFree: true,
+		axis: viewportWidth === 'mobile' ? 'y' : 'x'
+	});
 
 	const containerRef = useRef<HTMLDivElement>(null!);
 
@@ -117,24 +118,43 @@ const FeaturedProjects = (props: Props) => {
 	};
 
 	useEffect(() => {
-		document.documentElement.style.setProperty('--feature-wrapper-height', '0');
+		document.documentElement.style.setProperty(
+			'--feature-wrapper-height',
+			'0'
+		);
 		const timer = setTimeout(() => {
-			document.documentElement.style.setProperty('--feature-wrapper-height', setFeatureWrapperHeight());
+			document.documentElement.style.setProperty(
+				'--feature-wrapper-height',
+				setFeatureWrapperHeight()
+			);
 		}, 300);
 
 		return () => clearTimeout(timer);
 	}, []);
 
 	useEffect(() => {
-		document.documentElement.style.setProperty('--feature-wrapper-height', setFeatureWrapperHeight());
-		document.documentElement.style.setProperty('--brightness', setStatementsBrightness());
+		document.documentElement.style.setProperty(
+			'--feature-wrapper-height',
+			setFeatureWrapperHeight()
+		);
+		document.documentElement.style.setProperty(
+			'--brightness',
+			setStatementsBrightness()
+		);
 	}, [isMini, viewportWidth]);
+
+	useEffect(() => {
+		if (!emblaApi) {
+			return;
+		}
+
+		// Recalculate slide bounds after responsive/mobile layout updates.
+		emblaApi.reInit();
+	}, [emblaApi, viewportWidth, isMini, hasData]);
 
 	return (
 		<>
-			<FeaturedProjectsWrapper
-				ref={containerRef}
-			>
+			<FeaturedProjectsWrapper ref={containerRef}>
 				<Embla
 					className="embla featured-projects"
 					ref={emblaRef}
@@ -142,14 +162,24 @@ const FeaturedProjects = (props: Props) => {
 					onMouseOut={() => setIsMini(true)}
 				>
 					<EmblaContainer className="embla__container">
-						{hasData && data.map((item: FeaturedProjectType, i: number) => (
-							<EmblaSlide className="embla__slide" key={i}>
-								<FeaturedProject
-									data={item}
-									setShowFullVideo={setShowFullVideo}
-								/>
-							</EmblaSlide>
-						))}
+						{hasData &&
+							data.map((item: FeaturedProjectType, i: number) => (
+								<>
+									{item.muxAssetId && (
+										<EmblaSlide
+											className="embla__slide"
+											key={i}
+										>
+											<FeaturedProject
+												data={item}
+												setShowFullVideo={
+													setShowFullVideo
+												}
+											/>
+										</EmblaSlide>
+									)}
+								</>
+							))}
 					</EmblaContainer>
 				</Embla>
 				<MenuTrigger />
